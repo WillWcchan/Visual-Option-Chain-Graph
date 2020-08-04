@@ -20,3 +20,12 @@ def stockName(request):
             return render(request, 'optionchain/index.html', {"error_message": "Unable to find stock. Please try again."})
     return render(request, 'optionchain/index.html', {"error_message": "Unable to handle request to find stock. Please try again."})
 
+def callOptionTable(request):
+    if request.method == 'GET':
+        optionStockName = request.GET.get("call","")
+        if optionStockName is not None:
+           return render(request, 'optionchain/callOptionTable.html', {'option_stockName':optionStockName})
+    return HttpResponse("Call option Table")
+
+def putOptionTable(request):
+    return HttpResponse("Put option Table")    

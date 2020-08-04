@@ -107,7 +107,33 @@ body {
 
 .optionInfo {
   width: inherit;
-  height: inherit;
+  height: fit-content;
+  position: absolute;
   text-align: -webkit-left;
   margin-top: 2%;
+}
+
+.optionInterested {
+  height:auto;
+}
+
+.optionButtons {
+  margin-left: 50px;
+}
+
+/* Option Table color */
+.hiddenRow {
+  padding: 0 !important;
+}
+
+.optionTableColor {
+  color:white;
+}
+
+.optionCardColor {
+  background-color:#565656;
+}
+
+.buttonOptionLinkColor {
+  color:white !important;
 }
