@@ -45,14 +45,14 @@
     </div>
   </header>
 
-  <p class="optionInfo display-4 lead"> {{option.stockName}} ({{option.ticker}}) </p>
+  <p class="optionInfo display-4 lead"> ({{option.ticker}}) </p>
 
   <blockquote class="blockquote text-center optionInterested">
     <p>Select an option you are interested in? </p>
 
     {% csrf_token %}
     <form action="callOptionTable" method="GET">
-    <button type="submit" class="btn btn-success btn-lg" name="call" value="{{option.stockName}}"> 
+    <button type="submit" class="btn btn-success btn-lg" name="call" value="{{option.ticker}}"> 
         Calls 
     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
@@ -60,7 +60,7 @@
     </svg>
 
     </button>
-    <button type="submit" class="btn btn-danger btn-lg optionButtons" name="put" value="{{option.stockName}}">
+    <button type="submit" class="btn btn-danger btn-lg optionButtons" name="put" value="{{option.ticker}}">
         Puts
     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" d="M12 7.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H7a.5.5 0 0 1 0-1h4.5V8a.5.5 0 0 1 .5-.5z"/>

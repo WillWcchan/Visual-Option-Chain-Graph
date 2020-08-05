@@ -43,15 +43,18 @@
   <!-- Begin of Accordion for Option Date Table -->
   <!-- Keep the id="accordionExample" to enable the accordion -->
   <div class="accordion" id="accordionExample">
-
+  {% if option_list %}
+  {% for option in option_list.all %}
   <!-- Begin of Card -->
   <div class="card optionCardColor">
     <div class="card-header">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left buttonOptionLinkColor" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <div class="float-left" class="option-date">July 31 2020</div>
+                <div class="float-left" class="option-date">{{option.expiration}}</div>
+                {% comment %} 
                 <div class="float-right" class="option-iv-number"> (&#177;  0.0046) </div>
-                <div class="float-right" class="option-iv-percentage" > 16.06% </div>
+                <div class="float-right" class="option-iv-percentage" > 16.06% </div> 
+                {% endcomment %}
         </button>
       </h2>
     </div>
@@ -61,38 +64,22 @@
         <table class="optionTableColor table table-condensed table-borderless" style="border-collapse:collapse;">
             <tbody>
               <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                <td class="option-row-strike-price">  Strike - $11 </td>
+                <td class="option-row-strike-price">{{option.strike}}</td>
+                {% comment %} 
                 <td class="option-row-current-price">  Price: 2.01 (% 2.02) </td>
                 <td class="option-row-current-IV-percentage">  IV: 1% </td>
                 <td class="option-row-current-bid">  Bid: 11.01 </td>
-                <td class="option-row-current-ask">  Ask: 11.02 </td>
+                <td class="option-row-current-ask">  Ask: 11.02 </td> 
+                {% endcomment %}
               </tr>
             </tbody>
         </table>
       </div>
     </div>
-
   </div> 
   <!-- End of card -->
-
-  <!-- Begin of Card -->
-  <div class="card optionCardColor">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed buttonOptionLinkColor" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <div class="float-left" id="option-date">Aug 6 2020</div>
-                <div class="float-right" id="option-iv-number"> (&#177;  0.900) </div>
-                <div class="float-right" id="option-iv-percentage" > 117% </div>
-        </button>
-      </h2>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <!-- End of card -->
+  {% endfor %}
+  {% endif %}  
 
   </div>
   <!-- End of Accordion for Option Date Table -->

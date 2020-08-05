@@ -3,15 +3,15 @@ from django.db import models
 # Returns all options contracts and their prices for the given symbol and expiration date.
 # Source: https://docs.intrinio.com/documentation/web_api/get_options_chain_v2
 class Option(models.Model):
-    stockName = models.CharField(max_length=50)
+    # stockName = models.CharField(max_length=50)
     ticker = models.CharField(max_length=8)
     # Modify DATE format for Model (Example: 2019-04-05)
     expiration = models.DateField()
-    strike = models.IntegerField(default=0)
+    strike = models.FloatField(default=0.0)
     type = models.CharField(max_length=4)
 
     def __str__(self):
-        return self.stockName
+        return self.ticker
 
 # Returns all option prices for a given option contract identifier.
 # Source: https://docs.intrinio.com/documentation/web_api/get_options_prices_v2
