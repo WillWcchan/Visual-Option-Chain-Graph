@@ -11,7 +11,14 @@ class Option(models.Model):
     type = models.CharField(max_length=4)
 
     def __str__(self):
-        return self.ticker
+        return "ticker: %s, expiration: %s, strike: %s, type: %s" %(self.ticker, self.expiration, self.strike, self.type)
+
+    def save(self, *args, **kwargs):
+        try:
+            option = Option.objects.get(ticker=self.ticker,expiration=self.expiration,strike=self.strike)
+            # Don't save or commit if found
+        except self.DoesNotExist:
+            super().save(*args, **kwargs)
 
 # Returns all option prices for a given option contract identifier.
 # Source: https://docs.intrinio.com/documentation/web_api/get_options_prices_v2
@@ -34,4 +41,4 @@ class OptionPrice(models.Model):
     delta = models.FloatField(default=0)
 
     def __str__(self):
-        return self.option.stockName
+        return "ticker: %s, expiration: %s, strike: %s, type: %s"  %(self.option.ticker, self.option.expiration, self.option.strike, self.option.type)

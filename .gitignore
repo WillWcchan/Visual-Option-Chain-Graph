@@ -3,3 +3,5 @@
 
 # Ignore the requirments.txt
 requirements.txt
+
+.env

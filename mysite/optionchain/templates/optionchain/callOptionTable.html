@@ -27,7 +27,7 @@
     </div>
   </header>
 
-  <p class="optionInfo display-4 lead"> {{option_stockName}} |  
+  <p class="optionInfo display-4 lead"> {{option_ticker}} |  
   
     <button type="button" class="btn btn-success btn-lg"> 
         Calls 
@@ -37,44 +37,22 @@
     </svg>
     </button>
   </p>
-
   <p class="text-center display-4"> Select a date </p>
 
   <!-- Begin of Accordion for Option Date Table -->
   <!-- Keep the id="accordionExample" to enable the accordion -->
   <div class="accordion" id="accordionExample">
-  {% if option_list %}
-  {% for option in option_list.all %}
+
+  {% if option_set_date %}
+  {% for expiration in option_set_date %}
   <!-- Begin of Card -->
   <div class="card optionCardColor">
     <div class="card-header">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left buttonOptionLinkColor" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <div class="float-left" class="option-date">{{option.expiration}}</div>
-                {% comment %} 
-                <div class="float-right" class="option-iv-number"> (&#177;  0.0046) </div>
-                <div class="float-right" class="option-iv-percentage" > 16.06% </div> 
-                {% endcomment %}
+                <div class="text-center" class="option-date" value={{expiration}}>Expiration: {{expiration|date:"M d, Y"}}</div>
         </button>
       </h2>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        <table class="optionTableColor table table-condensed table-borderless" style="border-collapse:collapse;">
-            <tbody>
-              <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                <td class="option-row-strike-price">{{option.strike}}</td>
-                {% comment %} 
-                <td class="option-row-current-price">  Price: 2.01 (% 2.02) </td>
-                <td class="option-row-current-IV-percentage">  IV: 1% </td>
-                <td class="option-row-current-bid">  Bid: 11.01 </td>
-                <td class="option-row-current-ask">  Ask: 11.02 </td> 
-                {% endcomment %}
-              </tr>
-            </tbody>
-        </table>
-      </div>
     </div>
   </div> 
   <!-- End of card -->
