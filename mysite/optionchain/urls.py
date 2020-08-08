@@ -9,6 +9,6 @@ urlpatterns = [
     path('stockName', views.stockName, name='stockName'),
     # ex: /optionchain/stockName/callOptionTable
     path('callOptionTable', views.callOptionTable, name='callOptionTable'),
-    # ex: /optionchain/stockName/putOptionTable
-    # path('putOptionTable', views.putOptionTable, name='putOptionTable')
+    # ex: /optionchain/callOptionGraph
+    path('callOptionGraphs', views.callOptionGraph, name='callOptionGraph')
 ]

@@ -108,7 +108,6 @@ body {
 .optionInfo {
   width: inherit;
   height: fit-content;
-  position: absolute;
   text-align: -webkit-left;
   margin-top: 4%;
 }

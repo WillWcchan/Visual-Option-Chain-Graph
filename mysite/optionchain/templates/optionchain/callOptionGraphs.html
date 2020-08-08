@@ -14,6 +14,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="../../static/optionchain/style.css" rel="stylesheet">
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 50%;
+          height: fit-content;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
   </head>
   <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -27,38 +47,46 @@
     </div>
   </header>
 
-  {% csrf_token %}
-  <p class="optionInfo display-4 lead" name="option_ticker" value="{{option_ticker}}"> ({{option_ticker}}) |  
-        Call
-  </p>
-  <p class="text-center display-4"> Select an expiration date:  </p>
+{% csrf_token %}
+<p class="optionInfo lead" name="option_ticker" value="{{option_ticker}}"> 
+  ({{option_ticker}})
+  | Call
+  | {{option_expiration|date:"M d Y"}}
+  | Bid Price: ${{current_ask_price}}
+  | Ask Price: ${{current_bid_price}}
+</p>
 
-  <!-- Begin of Accordion for Option Date Table -->
-  <!-- Keep the id="accordionExample" to enable the accordion -->
-  <div class="accordion" id="accordionExample">
+<br>
 
-  {% if options_expirations %}
-  {% for expiration in options_expirations %}
-  <!-- Begin of Card -->
-  <form action="callOptionGraphs" method="GET">
-    <div class="card optionCardColor">
-      <div class="card-header">
-        <h2 class="mb-0">
-          <button class="btn btn-link btn-block text-left buttonOptionLinkColor" type="submit" name="expiration_date" value="{{expiration|date:'Y-m-d'}}">
-            <div class="text-center" class="option-date"> {{expiration|date:"F d, Y"}}</div>
-          </button>
-        </h2>
-      </div>
-    </div> 
-  </form>
-  <!-- End of card -->
-  {% endfor %}
-  {% endif %}  
+{% load mathfilters %}
+{% if list_of_optionChain %}
+{% for option in list_of_optionChain%}
+    <button type="button" class="btn btn-dark">
+        <div class="row">
+            <div class="column">
+                <p> Strike ${{option.option.strike}} </p>
+                <p> Price: ${{option.price.close}} </p>
+                <p> Bid: {{option.price.close_bid}} | Ask: {{option.price.close_ask}}</p>
+                <p> Delta: {{option.price.delta|default:"N/A"}} </p>
+            </div>
+            <div class="column">
+                {% if option.price.implied_volatility == None %}
+                  <p>IV: N/A </p>
+                {% else %}
+                  <p>IV: {{option.price.implied_volatility|mul:100|floatformat}}% ({{option.price.implied_volatility_change|mul:100|floatformat}}%) </p>
+                {% endif %}
+                <!-- <p> Next Day Open Interest: {{option.price.next_day_open_interest}}</p> -->
+                <p> Open Interest: {{option.price.open_interest}} </p> 
+                <!-- <p> Open Interested Change: {{option.price.open_interest}} </p> -->
+                <p> Volume: {{option.price.volume}} </p>
+            </div>
+          </div>
+    </button>
+    <br>
+{% endfor %}
+{% endif %}
 
-  </div>
-  <!-- End of Accordion for Option Date Table -->
-
-  <footer class="mastfoot mt-auto">
+<footer class="mastfoot mt-auto">
     <div class="inner">
       <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
     </div>
