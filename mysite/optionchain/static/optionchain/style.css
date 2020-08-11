@@ -136,3 +136,7 @@ body {
 .buttonOptionLinkColor {
   color:white !important;
 }
+
+.alert-shadow {
+  text-shadow: none;
+}
