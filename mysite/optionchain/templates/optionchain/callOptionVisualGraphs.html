@@ -14,26 +14,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="../../static/optionchain/style.css" rel="stylesheet">
-
-    <style>
-        * {
-          box-sizing: border-box;
-        }
-        
-        /* Create two equal columns that floats next to each other */
-        .column {
-          float: left;
-          width: 50%;
-          height: fit-content;
-        }
-        
-        /* Clear floats after the columns */
-        .row:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
-        </style>
   </head>
   <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -47,7 +27,10 @@
     </div>
   </header>
 
-<img src="data:image/png;base64,{{ graph|safe }}">
+  <br>
+  <canvas id="daily" width="fit-content" height="fit-content"></canvas><br>
+  <canvas id="weekly" width="fit-content" height="fit-content"></canvas><br>
+  <canvas id="monthly" width="fit-content" height="fit-content"></canvas>
 
   <footer class="mastfoot mt-auto">
     <div class="inner">
@@ -59,9 +42,89 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-<!-- Custom javascript -->
-<script src="../../static/optionchain/index.js"></script>
-</div>
+
+<!-- Source: https://www.chartjs.org/docs/latest/getting-started/ -->
+<script type="text/javascript">
+{% block jquery %}
+var ticker = "{{stock_ticker|safe}}";
+var timestamps = {{daily_timestamps|safe}};
+var prices = {{daily_price|safe}};
+
+var daily = document.getElementById('daily').getContext('2d');
+var weekly = document.getElementById('weekly').getContext('2d');
+var monthly  = document.getElementById('monthly').getContext('2d');
+
+createChart(daily,timestamps,prices,'Daily');
+createChart(weekly,{{weekly_timestamps|safe}},{{weekly_price|safe}}, 'Weekly');
+createChart(monthly,{{monthly_timestamps|safe}},{{monthly_price|safe}}, 'Monthly'); 
+
+function createChart(ctx,timestamps,price,label) {
+var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: label + " | " + ticker,
+                backgroundColor: [
+                    "transparent"
+                ],
+                borderColor: [
+                    "white"
+                ],
+                borderWidth: 1,
+                data: prices
+            }]
+        },
+        // Configuration options go here
+        options: {
+          maintainAspectRatio: false,
+          legend: {
+            onClick: function (e) {
+                e.stopPropagation();
+            },
+            labels: {
+              fontColor: "white",
+              fontSize: 18
+            }
+          },
+          scales: {
+            xAxes: [{
+              gridlines: {
+                color: 'transparent',
+              },
+              ticks: {
+                fontColor: 'white',
+
+              },
+            }],
+            yAxes: [{
+              gridlines: {
+                color: 'transparent',
+              },
+              ticks: {
+                fontColor: 'white',
+                autoSkip: false,
+                suggestedMax: getMax(prices),
+              }
+            }],
+          }
+        }
+});
+}
+
+function getMax(array) {
+  var max = array[0];
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] > max) {
+      max = array[i];
+    }
+  }
+}
+
+{% endblock %}
+</script>
+
 </body>
 </html>

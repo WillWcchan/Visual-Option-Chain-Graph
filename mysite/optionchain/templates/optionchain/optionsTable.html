@@ -49,7 +49,11 @@
 
 <p class="optionInfo lead" name="stock_ticker" value="{{stock_ticker}}"> 
   {{stock_ticker}}
-  | Call
+        {% if type == 'call' %}
+          | CALL
+        {% else %}
+          | PUT
+        {% endif %}
   | {{option_expiration|date:"M d Y"}}
   | Bid Price: ${{current_ask_price}}
   | Ask Price: ${{current_bid_price}}
@@ -57,39 +61,35 @@
 
 <br>
 
+{% csrf_token %}
 {% load mathfilters %}
 {% if list_of_optionChain %}
 {% for option in list_of_optionChain%}
-{% csrf_token %}
+  {% if type == option.option_type %}
   <form action="callOptionVisualGraphs" method="GET">
-    <button type="submit" class="btn btn-dark btn-lg btn-block" name="stock_option_ticker" value="{{option.option.code}}">
+    <button type="submit" class="btn btn-dark btn-lg btn-block" name="stock_ticker" value="{{option.symbol}}">
         <div class="row">
             <div class="column">
-                <p> Ticker: {{option.option.code}} </p> 
-                <p> Strike ${{option.option.strike}} </p>
-                <p> Price: ${{option.price.close}} </p>
-                <p> Bid: {{option.price.close_bid}} | Ask: {{option.price.close_ask}}</p>
+                <p> Ticker: {{option.symbol}} </p> 
+                <p> Strike ${{option.strike}} </p>
+                <p> Price: ${{option.last}} </p>
+                <p> Bid: {{option.bid}} | Ask: {{option.ask}}</p> 
             </div>
             <div class="column">
-                <p> Delta: {{option.price.delta|default:"N/A"}} </p>
-                {% if option.price.implied_volatility == None %}
+                <p> Delta: {{option.greeks.delta}} </p>
+                {% if option.greeks.ask_iv == None %}
                   <p>IV: N/A </p>
                 {% else %}
-                  {% if option.price.implied_volatility_change > 0 %}
-                  <p>IV: {{option.price.implied_volatility|mul:100|floatformat}}% (+{{option.price.implied_volatility_change|mul:100|floatformat}}%) </p>
-                  {% else %}
-                  <p>IV: {{option.price.implied_volatility|mul:100|floatformat}}% ({{option.price.implied_volatility_change|mul:100|floatformat}}%) </p>
-                  {% endif %}
+                  <p>IV: {{option.greeks.ask_iv|mul:100|floatformat:"0"}}%
                 {% endif %}
-                <!-- <p> Next Day Open Interest: {{option.price.next_day_open_interest}}</p> -->
-                <p> Open Interest: {{option.price.open_interest}} </p> 
-                <!-- <p> Open Interested Change: {{option.price.open_interest}} </p> -->
-                <p name="volume" value="{{option.price.volume}}"> Volume: {{option.price.volume}} </p>
+                <p> Open Interest: {{option.open_interest}} </p> 
+                <p> Volume: {{option.volume}} </p> 
             </div>
           </div>
     </button>
-    </form>
-    <br>
+  </form>
+  {% endif %}
+  <br>
 {% endfor %}
 {% endif %}
 

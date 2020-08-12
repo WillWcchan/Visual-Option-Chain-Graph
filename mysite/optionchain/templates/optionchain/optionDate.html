@@ -12,24 +12,6 @@
 
     <!-- Bootstrap core CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-    </style>
     <!-- Custom styles for this template -->
     <link href="../../static/optionchain/style.css" rel="stylesheet">
   </head>
@@ -45,29 +27,40 @@
     </div>
   </header>
 
-  <p class="optionInfo display-4 lead"> ({{option}}) </p>
+  {% csrf_token %}
+  <p class="optionInfo display-4 lead text-center" name="stock_ticker" value="{{stock_ticker}}"> {{stock_ticker}} |  
+        {% if type == 'CALL' %}
+          CALL
+        {% else %}
+          PUT
+        {% endif %}
+  </p>
+  <p class="text-center display-4"> Select an expiration date:  </p>
 
-  <blockquote class="blockquote text-center optionInterested">
-    <p>Select an option you are interested in? </p>
+  <!-- Begin of Accordion for Option Date Table -->
+  <!-- Keep the id="accordionExample" to enable the accordion -->
+  <div class="accordion" id="accordionExample">
 
-    {% csrf_token %}
-    <form action="callOptionTable" method="GET">
-    <button type="submit" class="btn btn-success btn-lg" name="call" value="{{option}}"> 
-        Call
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
-      <path fill-rule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
-    </svg>
+  {% if options_expirations %}
+  {% for expiration in options_expirations %}
+  <!-- Begin of Card -->
+  <form action="optionsTable" method="GET">
+    <div class="card optionCardColor">
+      <div class="card-header">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-left buttonOptionLinkColor" type="submit" name="expiration_date" value="{{expiration|date:'Y-m-d'}}">
+            <div class="text-center" class="option-date"> {{expiration|date:"F d, Y"}}</div>
+          </button>
+        </h2>
+      </div>
+    </div> 
+  </form>
+  <!-- End of card -->
+  {% endfor %}
+  {% endif %}  
 
-    </button>
-    <button type="submit" class="btn btn-danger btn-lg optionButtons" name="put" value="{{option}}">
-        Puts
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M12 7.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H7a.5.5 0 0 1 0-1h4.5V8a.5.5 0 0 1 .5-.5z"/>
-      <path fill-rule="evenodd" d="M2.646 3.646a.5.5 0 0 1 .708 0l9 9a.5.5 0 0 1-.708.708l-9-9a.5.5 0 0 1 0-.708z"/>
-    </svg>
-    </button>
-  </blockquote>
+  </div>
+  <!-- End of Accordion for Option Date Table -->
 
   <footer class="mastfoot mt-auto">
     <div class="inner">

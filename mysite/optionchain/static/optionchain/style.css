@@ -125,7 +125,7 @@ body {
   padding: 0 !important;
 }
 
-.optionTableColor {
+.optionDateColor {
   color:white;
 }
 
@@ -138,5 +138,15 @@ body {
 }
 
 .alert-shadow {
-  text-shadow: none;
+  text-shadow: none !important;
+}
+
+.button-container form,
+.button-container form button {
+    display: inline;
+}
+
+.button-container button {
+    display: inline;
+    vertical-align: middle;
 }

@@ -51,7 +51,7 @@
   </div>
   {% endif %}
   
-  <form action="stockName" method="GET">
+  <form action="stock_ticker" method="GET">
     <div class="input-group mb-3 input-group-lg">
       <div class="input-group-prepend md-form">
         <span class="input-group-text glyphicon glyphicon-search" id="basic-addon1">
@@ -62,12 +62,14 @@
         </span>
       </div>
     {% csrf_token %}
-      <input type="text" name="stock_ticker" autocomplete="off" class="form-control" placeholder="Enter a stock ticker (ex. MSFT)" aria-label="Username" aria-describedby="basic-addon1">
+      <input type="text" name="stock_ticker" autocomplete="off" class="form-control" placeholder="Enter a stock ticker (ex. MSFT | INTC | JNJ | DIS)">
       <div class="input-group-append">
         <button type="submit" class="btn btn-primary">Enter</button>
       </div>
     </div>
-  </form>
+  </form> 
+
+  {% comment %} <canvas id="daily" width="400" height="400"></canvas> {% endcomment %}
 
   <footer class="mastfoot mt-auto">
     <div class="inner">
@@ -79,9 +81,68 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-<!-- Custom javascript -->
-<script src="../../static/optionchain/index.js"></script>
+
+<!-- Source: https://www.chartjs.org/docs/latest/getting-started/ -->
+{% comment %} <script type="text/javascript">
+{% block jquery %}
+var endpoint = 'api/data';
+var ticker = 'MSFT';
+var timestamps = [];
+var prices = [];
+
+var ctx = document.getElementById('daily').getContext('2d');
+var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: ticker,
+                backgroundColor: [
+                    "transparent"
+                ],
+                borderColor: [
+                    "white"
+                ],
+                borderWidth: 1,
+                data: prices
+            }]
+        },
+        // Configuration options go here
+        options: {
+          legend: {
+            labels: {
+              fontColor: "white",
+              fontSize: 18
+            }
+          },
+          scales: {
+            xAxes: [{
+              gridlines: {
+                color: 'transparent',
+              },
+              ticks: {
+                fontColor: 'white',
+              },
+            }],
+            yAxes: [{
+              gridlines: {
+                color: 'transparent',
+              },
+              ticks: {
+                fontColor: 'white',
+              }
+            }],
+          }
+        }
+});
+
+
+
+{% endblock %}
+</script> {% endcomment %}
+
 </div>
 </body>
 </html>
