@@ -1,31 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.0.1">
-    <title>Cover Template · Bootstrap</title>
+{% extends 'base.html' %}
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/cover/">
-
-    <!-- Bootstrap core CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="../../static/optionchain/style.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">Visual Option Chain Graph</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="/optionchain">Home</a>
-        <a class="nav-link" href="#">About</a>
-      </nav>
-    </div>
-  </header>
+{% block content %}
 
   {% csrf_token %}
   <p class="optionInfo display-4 lead text-center" name="stock_ticker" value="{{stock_ticker}}"> {{stock_ticker}} |  
@@ -36,45 +11,22 @@
         {% endif %}
   </p>
   <p class="text-center display-4"> Select an expiration date:  </p>
-
-  <!-- Begin of Accordion for Option Date Table -->
-  <!-- Keep the id="accordionExample" to enable the accordion -->
   <div class="accordion" id="accordionExample">
-
   {% if options_expirations %}
   {% for expiration in options_expirations %}
-  <!-- Begin of Card -->
-  <form action="optionsTable" method="GET">
+  <form action="optionTable" method="GET">
     <div class="card optionCardColor">
       <div class="card-header">
         <h2 class="mb-0">
-          <button class="btn btn-link btn-block text-left buttonOptionLinkColor" type="submit" name="expiration_date" value="{{expiration|date:'Y-m-d'}}">
+          <button class="btn btn-link buttonOptionLinkColor" type="submit" name="expiration_date" value="{{expiration|date:'Y-m-d'}}">
             <div class="text-center" class="option-date"> {{expiration|date:"F d, Y"}}</div>
           </button>
         </h2>
       </div>
     </div> 
   </form>
-  <!-- End of card -->
   {% endfor %}
   {% endif %}  
+  </div> <!-- End of Accordion for Option Date Table -->
 
-  </div>
-  <!-- End of Accordion for Option Date Table -->
-
-  <footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-    </div>
-  </footer>
-
-<!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
-<!-- Custom javascript -->
-<script src="../../static/optionchain/index.js"></script>
-</div>
-</body>
-</html>
+{% endblock %}

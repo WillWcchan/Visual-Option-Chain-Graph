@@ -9,8 +9,8 @@ urlpatterns = [
     path('stock_ticker', views.stock_ticker, name='stock_ticker'),
     # ex: /optionchain/stock_ticker/optionChain
     path('optionDate', views.optionDate, name='optionChain'),
-    # ex: /optionchain/optionsTable
-    path('optionsTable', views.optionsTable, name='callOptionGraph'),
-    # ex: /optionchain/callOptionVisualGraphs
-    path('callOptionVisualGraphs', views.callOptionVisualGraphs, name='callOptionVisualGraphs'),
+    # ex: /optionchain/optionTable
+    path('optionTable', views.optionTable, name='callOptionGraph'),
+    # ex: /optionchain/optionVisualGraphs
+    path('optionVisualGraphs', views.optionVisualGraphs, name='optionVisualGraphs'),
 ]
