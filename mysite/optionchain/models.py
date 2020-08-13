@@ -2,14 +2,15 @@ from django.db import models
 
 # Returns all options contracts and their prices for the given symbol and expiration date.
 class Option(models.Model):
-    intrinio_code = models.CharField(max_length=30, null=True)
+    symbol = models.CharField(max_length=30, null=True)
     expiration = models.DateField()
     strike = models.FloatField(default=0.0)
     ticker = models.CharField(max_length=8)
     type = models.CharField(max_length=4)
+    expiration_type = models.CharField(max_length=8)
 
     def __str__(self):
-        return "Intrinio_code: %s, Expiration: %s, Strike: %s, Ticker: %s, Type: %s" %(self.intrinio_code, self.expiration, self.strike, self.ticker, self.type)
+        return "Symbol: %s, Expiration: %s, Strike: %s, Ticker: %s, Type: %s, Expiration: %s" %(self.symbol, self.expiration, self.strike, self.ticker, self.type, self.expiration_type)
 
     def save(self, *args, **kwargs):
         # Don't save if found

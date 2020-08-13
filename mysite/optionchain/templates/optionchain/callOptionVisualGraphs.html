@@ -49,6 +49,7 @@
 <script type="text/javascript">
 {% block jquery %}
 var ticker = "{{stock_ticker|safe}}";
+var strike = "{{strike|safe}}";
 var timestamps = {{daily_timestamps|safe}};
 var prices = {{daily_price|safe}};
 
@@ -57,16 +58,17 @@ var weekly = document.getElementById('weekly').getContext('2d');
 var monthly  = document.getElementById('monthly').getContext('2d');
 
 createChart(daily,timestamps,prices,'Daily');
-createChart(weekly,{{weekly_timestamps|safe}},{{weekly_price|safe}}, 'Weekly');
-createChart(monthly,{{monthly_timestamps|safe}},{{monthly_price|safe}}, 'Monthly'); 
+{% comment %} createChart(weekly,{{weekly_timestamps|safe}},{{weekly_price|safe}}, 'Weekly');
+createChart(monthly,{{monthly_timestamps|safe}},{{monthly_price|safe}}, 'Monthly');  {% endcomment %}
 
 function createChart(ctx,timestamps,price,label) {
+if (timestamps.length > 0 && price.length > 0) {
 var chart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: timestamps,
             datasets: [{
-                label: label + " | " + ticker,
+                label: label + " | " + ticker + " | " + " Strike: " + strike,
                 backgroundColor: [
                     "transparent"
                 ],
@@ -112,6 +114,7 @@ var chart = new Chart(ctx, {
           }
         }
 });
+}
 }
 
 function getMax(array) {

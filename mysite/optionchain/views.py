@@ -2,8 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, JsonResponse
 from .models import Option, OptionPrice
 from django.utils.dateparse import parse_date
-from datetime import datetime as dt, timedelta
-from datetime import date
+from datetime import datetime as dt, timedelta, date
 import base64
 import requests
 import json
@@ -86,12 +85,13 @@ def optionsTable(request):
                   if optionPrice:
                     list_of_optionChain.append(
                         {'option': {
-                            'code': option.intrinio_code,
+                            'symbol': option.symbol,
                             'expiration': str(option.expiration),
                             'id': option.intrinio_id,
                             'strike': option.strike,
                             'ticker': option.ticker,
                             'type': option.type,
+                            'expiration_type': option.expiration_type,
                         },
                         'price': {
                             'close':optionPrice.close,
@@ -118,19 +118,21 @@ def optionsTable(request):
                 list_of_optionChain = response["options"]["option"]
 
                 for option in list_of_optionChain:
-                    option_code = option["symbol"]
+                    option_symbol = option["symbol"]
                     option_expiration = option["expiration_date"]
                     option_strike = option["strike"]
                     option_ticker = option["underlying"]
                     option_type = option["option_type"]
+                    option_expiration_type = option["expiration_type"]
 
                     # Create the Option object and store into the database
                     option_create = Option(
-                        intrinio_code = option_code,
+                        symbol = option_symbol,
                         expiration = parse_date(option_expiration),
                         strike = option_strike,
                         ticker = option_ticker,
-                        type = option_type
+                        type = option_type,
+                        expiration_type= option_expiration_type,
                     )
                     # Save or else we get an exception where save() prohibited to prevent data loss due to unsaved related object
                     option_create.save()
@@ -175,7 +177,11 @@ def optionsTable(request):
 
 def callOptionVisualGraphs(request):
     if request.method == 'GET':
-       stock_ticker = request.GET.get("stock_ticker",request.session['stock_ticker'])
+       stock_ticker = request.GET.get("stock_ticker",request.session['stock_ticker']) # {{option.symbol}} {{option.expiration_type}} {{option.strike}}
+       expiration_type = stock_ticker.split()[1]    
+       strike = stock_ticker.split()[2]
+       stock_ticker = stock_ticker.split()[0]
+
        expiration_date = request.GET.get("expiration_date",request.session['expiration_date'])
        if stock_ticker and len(stock_ticker) > 0:
             request.session['stock_ticker'] = stock_ticker # cache the option_ticker (Ex: 'MSFT200807C00300000')
@@ -183,7 +189,7 @@ def callOptionVisualGraphs(request):
             # Shows the daily Graph
             response = __get_time_and_sales(ticker=stock_ticker,interval="daily")
             if response is None or response['series'] is None:
-                return render(request,'optionchain/index.html', {"error_message": "No time and sales for this daily ticker: " + stock_ticker})
+                return render(request,'optionchain/index.html', {"error_message": "No time and sales for this daily ticker - " + stock_ticker +  " and expiration - " + expiration_date + ". It's possible that the graph didn't move at all for this strike. Try another strike"})
             daily_timestamps, daily_price = __get_timestamp_and_price(json_response=response,interval="daily")
 
             # Shows the weekly graph
@@ -192,20 +198,24 @@ def callOptionVisualGraphs(request):
                 return render(request,'optionchain/index.html', {"error_message": "No time and sales for this weekly ticker: " + stock_ticker})
             weekly_timestamps, weekly_price = __get_timestamp_and_price(json_response=response,interval="weekly")
 
+            monthly_timestamps = []
+            monthly_price = []
             # Shows the monthly graph
-            response = __get_time_and_sales(ticker=stock_ticker,interval="monthly")
-            if response is None:
-                return render(request,'optionchain/index.html', {"error_message": "No time and sales for this monthly ticker: " + stock_ticker})         
-            monthly_timestamps, monthly_price = __get_timestamp_and_price(json_response=response,interval="monthly")
+            if expiration_type != 'weeklys':
+                response = __get_time_and_sales(ticker=stock_ticker,interval="monthly")
+                if response is None:
+                    return render(request,'optionchain/index.html', {"error_message": "No time and sales for this monthly ticker: " + stock_ticker})         
+                monthly_timestamps, monthly_price = __get_timestamp_and_price(json_response=response,interval="monthly")
 
             context = {
                 'stock_ticker': stock_ticker,
+                'strike': strike,
                 'daily_timestamps':daily_timestamps,
                 'daily_price':daily_price,
                 'weekly_timestamps':weekly_timestamps,
                 'weekly_price':weekly_price,
                 'monthly_timestamps':monthly_timestamps,
-                'monthly_price':monthly_price
+                'monthly_price':monthly_price,
             }
 
             return render(request, 'optionchain/callOptionVisualGraphs.html',context)
