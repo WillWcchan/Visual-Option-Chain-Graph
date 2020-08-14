@@ -14,7 +14,7 @@
   <div class="accordion" id="accordionExample">
   {% if options_expirations %}
   {% for expiration in options_expirations %}
-  <form action="optionTable" method="GET">
+  <form action="{% url 'optionTable' %}" method="GET">
     <div class="card optionCardColor">
       <div class="card-header">
         <h2 class="mb-0">

@@ -2,46 +2,45 @@
 
 {% block content %}
 
-<p class="optionInfo lead" name="stock_ticker" value="{{stock_ticker}}"> 
+<p class="optionInfo lead" name="stock_ticker" value="{{stock_ticker}}">
   {{stock_ticker}}
-        {% if type == 'call' %}
-          | CALL
-        {% else %}
-          | PUT
-        {% endif %}
+  {% if type == 'call' %}
+  | CALL
+  {% else %}
+  | PUT
+  {% endif %}
   | {{option_expiration|date:"M d Y"}}
   | Bid Price: ${{current_ask_price}}
   | Ask Price: ${{current_bid_price}}
 </p>
 
-<p class="text-center display-4"> Select a strike:  </p><br>
+<p class="text-center display-4"> Select a strike: </p><br>
 
 {% csrf_token %}
 {% load mathfilters %}
 {% if list_of_optionChain %}
 {% for option in list_of_optionChain%}
-  {% if type == option.option_type %}
-  <form action="optionVisualGraphs" method="GET">
-    <button type="submit" class="btn btn-dark btn-block btn-sm" name="stock_ticker" 
-            value="{{option.symbol}} {{option.expiration_type}} {{option.strike}}">
-        {% if option.greeks.ask_iv == None %}
-          <span class="float-left">IV: N/A </span>
-        {% else %}
-          <span class="float-left">IV: {{option.greeks.ask_iv|mul:100|floatformat:"0"}}% </span>
-        {% endif %}  
-        <span class=""> ${{option.strike}} </span>
-        <span class="float-right"> Ask: {{option.ask}} </span>
-        <span class="float-right"> Bid: {{option.bid}} |</span>
-        {% if option.last is None %}
-        <span class="float-right"> Price: Mark | </span>
-        {% else %}
-        <span class="float-right"> Price: ${{option.last|floatformat:"3"}} | </span>
-        {% endif %}
-        <span class="float-right"> OI: {{option.open_interest}} | </span> 
-        <span class="float-right"> Volume: {{option.volume}} | </span> 
-    </button>
-  </form>
-  {% endif %}
+{% if type == option.option_type %}
+<form action="{% url 'optionVisualGraphs' %}" method="GET">
+  <button type="submit" class="btn btn-dark btn-block btn-sm" name="symbol" value="{{option.symbol}} {{option.strike}}">
+    {% if option.greeks.ask_iv == None %}
+    <span class="float-left">IV: N/A </span>
+    {% else %}
+    <span class="float-left">IV: {{option.greeks.ask_iv|mul:100|floatformat:"0"}}% </span>
+    {% endif %}
+    <span class=""> ${{option.strike}} </span>
+    <span class="float-right"> Ask: {{option.ask}} </span>
+    <span class="float-right"> Bid: {{option.bid}} |</span>
+    {% if option.last is None %}
+    <span class="float-right"> Price: Mark | </span>
+    {% else %}
+    <span class="float-right"> Price: ${{option.last|floatformat:"3"}} | </span>
+    {% endif %}
+    <span class="float-right"> OI: {{option.open_interest}} | </span>
+    <span class="float-right"> Volume: {{option.volume}} | </span>
+  </button>
+</form>
+{% endif %}
 {% endfor %}
 {% endif %}
 

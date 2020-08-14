@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = [
+    "/mysite/optionchain/static",
+]
 
 # Application definition
 
@@ -122,4 +125,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # https://stackoverflow.com/questions/47585583/the-number-of-get-post-parameters-exceeded-settings-data-upload-max-number-field
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240  # higher than the count of fields

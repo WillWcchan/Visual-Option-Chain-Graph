@@ -10,21 +10,23 @@ import sys
 
 api_key = ''
 
+# Source: https://testdriven.io/blog/django-caching/
 
 def index(request):
     return render(request, 'optionchain/index.html')
 
-
 def stock_ticker(request):
     if request.method == 'GET':
-        stock_ticker = request.GET.get('stock_ticker', None).upper().strip()
+        stock_ticker = request.GET.get('stock_ticker')
         if not stock_ticker:
             return render(request, 'optionchain/index.html', {"error_message": "You've entered an empty ticker Try again."})
+        else:
+            stock_ticker = stock_ticker.upper().strip()
+            request.session["stock_ticker"] = stock_ticker
+
         try:
             option_exists = __get_option_expirations(stock_ticker=stock_ticker)
             if option_exists and len(option_exists) > 0:
-                # cache the stock_ticker for later use
-                request.session['stock_ticker'] = stock_ticker
                 return render(request, 'optionchain/optionType.html', {'stock_ticker': stock_ticker})
             else:
                 return render(request, 'optionchain/index.html', {"error_message": "Unable to find expirations for this ticker. Try another ticker"})
@@ -33,26 +35,15 @@ def stock_ticker(request):
     return render(request, 'optionchain/index.html', {"error_message": "Ensure the request method is a GET."})
 
 
-def optionDate(request):
+def optionType(request):
     if request.method == 'GET':
-        stock_ticker = request.GET.get(
-            "stock_ticker", request.session['stock_ticker'])
-        type_call = request.GET.get("call", '').upper().strip()
-        type_put = request.GET.get("put", '').upper().strip()
-        type = ""
-        if type_call.count('CALL') > 0:
-            type = "CALL"
-        elif type_put.count('PUT') > 0:
-            type = 'PUT'
-        else:
-            type = None
-
+        type = request.GET.get("option_type", None)
         if type is None:
             return render(request, 'optionchain/index.html', {"error_message": "Please define if you're using CALL or PUT"})
         else:
-            # cache the type to determine if put or call
             request.session['type'] = type
 
+        stock_ticker = request.session["stock_ticker"]
         if stock_ticker:
             options_expirations_converted = __get_option_expirations(
                 stock_ticker=stock_ticker)
@@ -73,9 +64,7 @@ def optionDate(request):
 
 def optionTable(request):
     if request.method == 'GET':
-        stock_ticker = request.GET.get(
-            "stock_ticker", request.session['stock_ticker'])
-        # determined by when the user clicks on call or put
+        stock_ticker = request.session["stock_ticker"]
         type = request.session['type']
         try:
             expiration = request.GET.get("expiration_date", "")
@@ -185,51 +174,46 @@ def optionTable(request):
         if stock_ticker and expiration_date and list_of_optionChain:
             return render(request, 'optionchain/optionTable.html', context=context)
 
-
 def optionVisualGraphs(request):
     if request.method == 'GET':
-        # {{option.symbol}} {{option.expiration_type}} {{option.strike}}
-        stock_ticker = request.GET.get(
-            "stock_ticker", request.session['stock_ticker'])
-        expiration_type = stock_ticker.split()[1]
-        strike = stock_ticker.split()[2]
-        stock_ticker = stock_ticker.split()[0]
-
-        expiration_date = request.GET.get(
-            "expiration_date", request.session['expiration_date'])
-        if stock_ticker and len(stock_ticker) > 0:
-            # cache the option_ticker (Ex: 'MSFT200807C00300000')
-            request.session['stock_ticker'] = stock_ticker
+        symbolAndStrike = request.GET.get("symbol", "")
+        symbol = symbolAndStrike.split(" ")[0]
+        strike = symbolAndStrike.split(" ")[1]
+        
+        if symbol and len(symbol) > 0:
+            request.session['symbol'] = symbol  # cache the option_ticker (Ex: 'MSFT200807C00300000')
 
             # Shows the daily Graph
             response = __get_time_and_sales(
-                ticker=stock_ticker, interval="daily")
+                symbol=symbol, interval="daily")
             if response is None or response['series'] is None:
                 return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this daily ticker - " + stock_ticker + " and expiration - " + expiration_date + ". It's possible that the graph didn't move at all for this strike. Try another strike"})
             daily_timestamps, daily_price = __get_timestamp_and_price(
                 json_response=response, interval="daily")
 
+            weekly_timestamps = []
+            weekly_price = []
             # Shows the weekly graph
-            response = __get_time_and_sales(
-                ticker=stock_ticker, interval="weekly")
-            if response is None:
-                return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this weekly ticker: " + stock_ticker})
-            weekly_timestamps, weekly_price = __get_timestamp_and_price(
-                json_response=response, interval="weekly")
+            # response = __get_time_and_sales(
+            #     ticker=stock_ticker, interval="weekly")
+            # if response is None:
+            #     return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this weekly ticker: " + stock_ticker})
+            # weekly_timestamps, weekly_price = __get_timestamp_and_price(
+            #     json_response=response, interval="weekly")
 
             monthly_timestamps = []
             monthly_price = []
             # Shows the monthly graph
-            if expiration_type != 'weeklys':
-                response = __get_time_and_sales(
-                    ticker=stock_ticker, interval="monthly")
-                if response is None:
-                    return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this monthly ticker: " + stock_ticker})
-                monthly_timestamps, monthly_price = __get_timestamp_and_price(
-                    json_response=response, interval="monthly")
+            # if expiration_type != 'weeklys':
+            #     response = __get_time_and_sales(
+            #         ticker=stock_ticker, interval="monthly")
+            #     if response is None:
+            #         return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this monthly ticker: " + stock_ticker})
+            #     monthly_timestamps, monthly_price = __get_timestamp_and_price(
+            #         json_response=response, interval="monthly")
 
             context = {
-                'stock_ticker': stock_ticker,
+                'stock_ticker': symbol,
                 'strike': strike,
                 'daily_timestamps': daily_timestamps,
                 'daily_price': daily_price,
@@ -279,8 +263,8 @@ def __get_option_chain(ticker, expiration):
     return None
 
 
-def __get_time_and_sales(ticker, interval):
-    if ticker and interval:
+def __get_time_and_sales(symbol, interval):
+    if symbol and interval:
         start = date.today()
         end = str(date.today()) + " 13:00"
         if interval == "daily":
@@ -297,7 +281,7 @@ def __get_time_and_sales(ticker, interval):
 
         # Finally make the request
         response = requests.get('https://api.tradier.com/v1/markets/timesales',
-                                params={'symbol': ticker, 'interval': interval,
+                                params={'symbol': symbol, 'interval': interval,
                                         'start': start, 'end': end, 'session_filter': 'open'},
                                 headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})
         return response.json()
@@ -314,6 +298,7 @@ def __get_timestamp_and_price(json_response, interval):
                 date = dt.strptime(data['time'], "%Y-%m-%dT%H:%M:%S")
                 date = date.strftime("%-m/%-d/%y %H:%-M")
                 timestamps.append(str(date))
+
         elif interval == 'monthly':
             for data in json_response["series"]["data"]:
                 date = dt.strptime(data['time'], "%Y-%m-%dT%H:%M:%S")

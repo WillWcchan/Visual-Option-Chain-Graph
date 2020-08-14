@@ -18,7 +18,7 @@
     <!-- Bootstrap core CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="../../static/optionchain/style.css" rel="stylesheet">
+    <link href="{% static 'optionchain/style.css' %}" type="text/css" rel="stylesheet">
   </head>
   
   <body class="text-center">
@@ -51,12 +51,13 @@
 <script type="text/javascript">
 var ticker = "{{stock_ticker| safe}}";
 var strike = "{{strike| safe}}";
+// Leave timestamps and prices without quotes if you don't want an ugly graph
 var timestamps = {{daily_timestamps| safe}};
 var prices = {{daily_price| safe}};
 
 var daily = document.getElementById('daily').getContext('2d');
-var weekly = document.getElementById('weekly').getContext('2d');
-var monthly = document.getElementById('monthly').getContext('2d');
+// var weekly = document.getElementById('weekly').getContext('2d');
+// var monthly = document.getElementById('monthly').getContext('2d');
 
 createChart(daily, timestamps, prices, 'Daily');
 // createChart(weekly,{{ weekly_timestamps| safe}},{{ weekly_price| safe}}, 'Weekly');

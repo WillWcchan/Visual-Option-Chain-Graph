@@ -7,7 +7,9 @@
   {{error_message}}
 </div>
 {% endif %}
-<form action="stock_ticker" method="GET">
+
+{% csrf_token %}
+<form action="{% url 'stock_ticker' %}" method="GET">
   <div class="input-group mb-3 input-group-lg">
     <div class="input-group-prepend md-form">
       <span class="input-group-text glyphicon glyphicon-search" id="basic-addon1">
@@ -20,7 +22,6 @@
         </svg>
       </span>
     </div>
-    {% csrf_token %}
     <input type="text" name="stock_ticker" autocomplete="off" class="form-control"
       placeholder="Enter a stock ticker (ex. MSFT | INTC | JNJ | DIS)">
     <div class="input-group-append">

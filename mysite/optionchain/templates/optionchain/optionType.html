@@ -2,33 +2,39 @@
 
 {% block content %}
 
-  <p class="optionInfo display-4 lead text-center"> ({{stock_ticker}}) </p>
+<p class="optionInfo display-4 lead text-center"> ({{stock_ticker}}) </p>
 
-  <blockquote class="blockquote text-center optionInterested">
-    <p>Select an option you are interested in? </p>
+<blockquote class="blockquote text-center optionInterested">
+  <p>Select an option you are interested in? </p>
 
-    {% csrf_token %}
-    <div class="button-container">
-      <form action="optionDate" method="GET">
-        <button type="submit" class="btn btn-success btn-lg" name="call" value="{{stock_ticker}} CALL"> 
-            Call
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
-            <path fill-rule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
-          </svg>
-        </button>
-      </form>
+  {% csrf_token %}
+  <div class="button-container">
+    <form action="{% url 'optionType'  %}" method="GET">
+      <button type="submit" class="btn btn-success btn-lg" name ="option_type" value="CALL">
+        Call
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z" />
+          <path fill-rule="evenodd"
+            d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z" />
+        </svg>
+      </button>
+    </form>
 
-      <form action="optionDate" method="GET">
-        <button type="submit" class="btn btn-danger btn-lg optionButtons" name="put" value="{{stock_ticker}} PUT">
-            Puts
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M12 7.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H7a.5.5 0 0 1 0-1h4.5V8a.5.5 0 0 1 .5-.5z"/>
-            <path fill-rule="evenodd" d="M2.646 3.646a.5.5 0 0 1 .708 0l9 9a.5.5 0 0 1-.708.708l-9-9a.5.5 0 0 1 0-.708z"/>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </blockquote>
+    <form action="{% url 'optionType'  %}" method="GET">
+      <button type="submit" class="btn btn-danger btn-lg optionButtons" name="option_type" value="PUT">
+        Puts
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-right" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M12 7.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H7a.5.5 0 0 1 0-1h4.5V8a.5.5 0 0 1 .5-.5z" />
+          <path fill-rule="evenodd"
+            d="M2.646 3.646a.5.5 0 0 1 .708 0l9 9a.5.5 0 0 1-.708.708l-9-9a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </button>
+    </form>
+  </div>
+</blockquote>
 
-  {% endblock %}
+{% endblock %}
