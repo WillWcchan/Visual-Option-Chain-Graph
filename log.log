@@ -1,7 +1,9 @@
-[14/Aug/2020 19:15:36] INFO [django.server:157] "GET /optionchain/ HTTP/1.1" 200 5872
-[14/Aug/2020 19:15:38] INFO [django.server:157] "GET /optionchain/getStock/?stock_ticker=msft HTTP/1.1" 200 6406
-[14/Aug/2020 19:15:39] INFO [django.server:157] "GET /optionchain/getStock/optionType/?option_type=CALL HTTP/1.1" 200 14076
-[14/Aug/2020 19:15:42] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/?expiration_date=2020-08-21 HTTP/1.1" 200 31445
-[14/Aug/2020 19:15:46] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00205000+205.0 HTTP/1.1" 200 4870
-[14/Aug/2020 19:17:00] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00205000+205.0 HTTP/1.1" 200 4870
-[14/Aug/2020 19:17:33] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00205000+205.0 HTTP/1.1" 200 7420
+[14/Aug/2020 22:24:09] INFO [optionchain:31] stock ticker was found
+[14/Aug/2020 22:24:23] ERROR [optionchain:274] Unable to find an expiration for LOL
+[14/Aug/2020 22:24:37] ERROR [optionchain:44] name 'request' is not defined
+Traceback (most recent call last):
+  File "/Users/Will/Visual Option Chain Graph/mysite/optionchain/views.py", line 36, in stock_ticker
+    option_exists = __get_option_expirations(stock_ticker=stock_ticker)
+  File "/Users/Will/Visual Option Chain Graph/mysite/optionchain/views.py", line 275, in __get_option_expirations
+    return render(request, 'optionchain/index.html', {"error_message": "Unable to find expiration for %s" %(stock_ticker)})
+NameError: name 'request' is not defined

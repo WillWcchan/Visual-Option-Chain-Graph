@@ -10,7 +10,7 @@ import sys
 import logging
 
 # Get an instance of a logger
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('optionchain')
 api_key = ''
 
 # Source: https://testdriven.io/blog/django-caching/
@@ -19,6 +19,9 @@ def index(request):
     return render(request, 'optionchain/index.html')
 
 def stock_ticker(request):
+    if api_key is None or api_key == "":
+       logger.critical("No API KEY provided")
+
     if request.method == 'GET':
         stock_ticker = request.GET.get('stock_ticker')
         if not stock_ticker:
@@ -29,14 +32,14 @@ def stock_ticker(request):
             stock_ticker = stock_ticker.upper().strip()
             request.session["stock_ticker"] = stock_ticker
 
-        try:
+        try: 
             option_exists = __get_option_expirations(stock_ticker=stock_ticker)
             if option_exists and len(option_exists) > 0:
                 logger.info("option's expiration exist for this stock ticker")
                 return render(request, 'optionchain/optionType.html', {'stock_ticker': stock_ticker})
             else:
                 logger.error("option's expiration does not exist for this stock ticker")
-                return render(request, 'optionchain/index.html', {"error_message": "Unable to find expirations for this ticker. Try another ticker"})
+                return render(request, 'optionchain/index.html', {"error_message": "Unable to find expirations %s. Try another ticker" %stock_ticker})
         except Exception as e:
             logger.exception(e)
             return render(request, 'optionchain/index.html', {"error_message": e})
@@ -48,9 +51,8 @@ def optionType(request):
         type = request.GET.get("option_type", None)
         if type is None:
             logger.error("option type was None")
-            return render(request, 'optionchain/index.html', {"error_message": "Please define if you're using CALL or PUT"})
         else:
-            logger.error("option type was found and saved as a session")
+            logger.info("option type was found and saved as a session")
             request.session['type'] = type
 
         stock_ticker = request.session["stock_ticker"]
@@ -132,7 +134,7 @@ def optionTable(request):
                 logger.info("Option does not exist in our database. Will make a REST API call to Tradier with %s and %s" %(stock_ticker, expiration_date))
                 response = __get_option_chain(
                     ticker=stock_ticker, expiration=expiration)
-                logger.info("Recieved option chain from Trader")
+                logger.info("Recieved option chain from Tradier API")
                 list_of_optionChain = response["options"]["option"]
 
                 for option in list_of_optionChain:
@@ -214,7 +216,7 @@ def optionVisualGraphs(request):
             try: 
                 response = __get_time_and_sales(symbol=symbol, interval="daily")
                 if response is None or response['series'] is None:
-                    return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this daily ticker - " + stock_ticker + " and expiration - " + expiration_date + ". It's possible that the graph didn't move at all for this strike. Try another strike"})
+                    return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this daily %s and %s. Visit an actual brokerage for their option graph." %stock_ticker})
                 daily_timestamps, daily_price = __get_timestamp_and_price(json_response=response, interval="daily")   
             except Exception as e:
                 logger.exception(e)
@@ -260,14 +262,19 @@ def optionVisualGraphs(request):
 def __get_option_expirations(stock_ticker):
     if stock_ticker:
         response = requests.get('https://api.tradier.com/v1/markets/options/expirations',
-                                params={
-                                    'symbol': stock_ticker, 'includeAllRoots': 'false', 'strikes': 'false'},
-                                headers={'Authorization': 'Bearer ' +
-                                         api_key, 'Accept': 'application/json'}
-                                )
-        dates = response.json()["expirations"]["date"]
-        options_expirations_converted = [parse_date(date) for date in dates]
-        return options_expirations_converted
+                                params={'symbol': stock_ticker, 'includeAllRoots': 'false', 'strikes': 'false'},
+                                headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})
+        if response.status_code == 401:
+            logger.critical("Invalid API Call As No Api Product Match Found")
+            return render(request, 'optionchain/index.html', {"error_message": "Something wrong with the API call to get option expiration"})
+        
+        dates = response.json()
+        if dates["expirations"] is None:
+            logger.error("Unable to find an expiration for stock ticker - %s" %(stock_ticker))
+        else:
+            dates = dates["expirations"]["date"]
+            options_expirations_converted = [parse_date(date) for date in dates]
+            return options_expirations_converted
     return None
 
 

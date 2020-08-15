@@ -129,14 +129,20 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240  # higher than the count of fields
 
 # Set up logging
 # Source: https://docs.djangoproject.com/en/3.0/topics/logging/
+# Prevent duplicate logging: https://stackoverflow.com/questions/6722479/why-does-my-django-1-3-logging-setup-cause-all-messages-to-be-output-twice
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'loggers': {
-        'django': {
-            'handlers': ['console','file'],
+        'optionchain': {
+            'handlers': ['file'],
             'level': 'INFO',
+            'propagate': False,
         }
+    },
+    'root': {
+        'handlers': ['file','console'],
+        'level': 'INFO',
     },
     'handlers': {
         'file': {
@@ -146,8 +152,9 @@ LOGGING = {
             'formatter': 'standard',
         },
         'console': {
-            'level': 'INFO',
+            'level': 'ERROR',
             'class': 'logging.StreamHandler',
+            'formatter': 'standard',
         },
     },
     'formatters': {
