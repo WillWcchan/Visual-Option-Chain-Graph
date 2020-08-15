@@ -21,13 +21,13 @@ from optionchain import views as v
 urlpatterns = [
     # ex /optionchain/
     url(r'^optionchain/', include('optionchain.urls')),
-    # ex /optionchain/getStock/?stock_ticker=msft
-    url(r'^optionchain/getStock/$', v.stock_ticker, name = 'stock_ticker'),
-    # ex /optionchain/getStock/optionType/?option_type=CALL
-    url(r'^optionchain/getStock/optionType/$', v.optionType, name = 'optionType'),
-    # ex /optionchain/getStock/optionType/optionDate/?expiration_date=2020-08-14
-    url(r'^optionchain/getStock/optionType/optionDate/$', v.optionTable, name = 'optionTable'),
-    # ex /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200814C00205000+205.0
-    url(r'^optionchain/getStock/optionType/optionDate/optionVisualGraphs/$', v.optionVisualGraphs, name = 'optionVisualGraphs'),
+    # ex /optionchain/stockTicker/?stock_ticker=msft
+    url(r'^optionchain/stockTicker/$', v.stock_ticker, name = 'stock_ticker'),
+    # ex /optionchain/stockTicker/optionType/?option_type=CALL
+    url(r'^optionchain/stockTicker/optionType/$', v.option_type, name = 'optionType'),
+    # ex /optionchain/stockTicker/optionType/optionDate/?expiration_date=2020-08-14
+    url(r'^optionchain/stockTicker/optionType/optionDate/$', v.option_table, name = 'optionTable'),
+    # ex /optionchain/stockTicker/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200814C00205000+205.0
+    url(r'^optionchain/stockTicker/optionType/optionDate/optionVisualGraphs/$', v.option_visual_graphs, name = 'optionVisualGraphs'),
     url(r'^admin/', admin.site.urls),
 ]
