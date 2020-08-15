@@ -1,0 +1,9 @@
+[14/Aug/2020 19:13:53] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[14/Aug/2020 19:13:57] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/?expiration_date=2020-08-21 HTTP/1.1" 200 31445
+[14/Aug/2020 19:14:32] INFO [django.utils.autoreload:222] /Users/Will/Visual Option Chain Graph/mysite/mysite/settings.py changed, reloading.
+[14/Aug/2020 19:14:38] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[14/Aug/2020 19:14:40] INFO [django.utils.autoreload:222] /Users/Will/Visual Option Chain Graph/mysite/mysite/settings.py changed, reloading.
+[14/Aug/2020 19:14:41] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[14/Aug/2020 19:14:54] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00202500+202.5 HTTP/1.1" 200 4870
+[14/Aug/2020 19:15:01] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00202500+202.5 HTTP/1.1" 200 4870
+[14/Aug/2020 19:15:20] INFO [django.server:157] "GET /optionchain/ HTTP/1.1" 200 5872

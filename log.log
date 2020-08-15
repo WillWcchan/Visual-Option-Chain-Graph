@@ -1,0 +1,7 @@
+[14/Aug/2020 19:15:36] INFO [django.server:157] "GET /optionchain/ HTTP/1.1" 200 5872
+[14/Aug/2020 19:15:38] INFO [django.server:157] "GET /optionchain/getStock/?stock_ticker=msft HTTP/1.1" 200 6406
+[14/Aug/2020 19:15:39] INFO [django.server:157] "GET /optionchain/getStock/optionType/?option_type=CALL HTTP/1.1" 200 14076
+[14/Aug/2020 19:15:42] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/?expiration_date=2020-08-21 HTTP/1.1" 200 31445
+[14/Aug/2020 19:15:46] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00205000+205.0 HTTP/1.1" 200 4870
+[14/Aug/2020 19:17:00] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00205000+205.0 HTTP/1.1" 200 4870
+[14/Aug/2020 19:17:33] INFO [django.server:157] "GET /optionchain/getStock/optionType/optionDate/optionVisualGraphs/?symbol=MSFT200821C00205000+205.0 HTTP/1.1" 200 7420
