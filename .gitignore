@@ -3,10 +3,4 @@
 # Ignore the requirments.txt
 requirements.txt
 
-settings.py
-
-config.py
-
-__pycache__
-
-*.ipynb
+.env

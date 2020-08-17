@@ -2,9 +2,8 @@ from datetime import datetime as dt, timedelta, date
 from django.utils.dateparse import parse_date
 import requests
 import json
-import optionchain.config
 
-api_key = optionchain.config.TRADIER_API_KEY
+api_key = ''
 
 def get_option_expirations(stock_ticker):
     if stock_ticker:
@@ -37,7 +36,7 @@ def get_real_time_quote(ticker):
 def get_option_chain(ticker, expiration):
     if ticker and expiration:
         response = requests.get('https://api.tradier.com/v1/markets/options/chains',
-                                params={'symbol': ticker, 'expiration': str(expiration), 'greeks': 'true'},
+                                params={'symbol': ticker, 'expiration': expiration, 'greeks': 'true'},
                                 headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})
         return response.json()
     return None
@@ -61,12 +60,15 @@ def get_time_and_sales(symbol, interval):
         if interval == "daily":
             start = str(start) + " 09:30"
             interval = '1min'
+            logger.info("Daily request for %s" %(symbol))
         elif interval == "weekly":
             start = str(start - timedelta(days=7)) + " 09:30"
             interval = '5min'
+            logger.info("Weekly request for %s" %(symbol))
         elif interval == 'monthly':
             start = str(start - timedelta(days=31)) + " 09:30"
             interval = '15min'
+            logger.info("Monthly request for %s" %(symbol))
         else:  # unsure of passed in interval
             return None
 

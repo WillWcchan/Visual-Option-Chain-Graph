@@ -1,6 +1,8 @@
 from django.db import models
 
 # Returns all options contracts and their prices for the given symbol and expiration date.
+
+
 class Option(models.Model):
     symbol = models.CharField(max_length=30, null=True, unique=True)
     expiration = models.DateField()
@@ -10,7 +12,7 @@ class Option(models.Model):
     expiration_type = models.CharField(max_length=8)
 
     def __str__(self):
-        return "Symbol: %s, Expiration: %s, Strike: %s, Ticker: %s, Type: %s, Expiration Type: %s" % (self.symbol, self.expiration, self.strike, self.ticker, self.type, self.expiration_type)
+        return "Symbol: %s, Expiration: %s, Strike: %s, Ticker: %s" % (self.symbol, self.expiration, self.strike, self.ticker)
 
     # Source: https://docs.djangoproject.com/en/3.1/topics/db/models/
     def save(self, *args, **kwargs):
@@ -24,8 +26,11 @@ class Option(models.Model):
 
 # Returns all option prices for a given Option
 # For every 1 Option contract, there are many option prices
+
+
 class OptionPrice(models.Model):
-    option = models.ForeignKey(Option, on_delete=models.CASCADE, null=True, blank=True)
+    option = models.ForeignKey(
+        Option, on_delete=models.CASCADE, null=True, blank=True)
     close = models.FloatField(default=0.0, null=True)
     close_ask = models.FloatField(default=0.0)
     close_bid = models.FloatField(default=0.0)
