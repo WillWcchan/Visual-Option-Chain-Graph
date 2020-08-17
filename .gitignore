@@ -1,8 +1,5 @@
 # Ignore the Python virtual environment
 venv
-# Ignore the requirments.txt
-requirements.txt
-
 settings.py
 config.py
 __pycache__
