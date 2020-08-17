@@ -3,6 +3,9 @@ from django.utils.dateparse import parse_date
 import requests
 import json
 import optionchain.config
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('optionchain')
 
 api_key = optionchain.config.TRADIER_API_KEY
 
@@ -10,12 +13,11 @@ def get_option_expirations(stock_ticker):
     if stock_ticker:
         response = requests.get('https://api.tradier.com/v1/markets/options/expirations',
                                 params={'symbol': stock_ticker, 'includeAllRoots': 'false', 'strikes': 'false'},
-                                headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})
-        if response.status_code == 401:
-            logger.critical("Invalid API Call as there's no API_KEY")
-            return render(request, 'optionchain/index.html', {"error_message": "Something wrong with the API call to get option expiration"})
-        
+                                headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})        
         dates = response.json()
+        if response.status_code != 200:
+            logger.critical("Unable to get option expiration for %s, due to %s" % (stock_ticker, response.content))
+            
         if dates["expirations"] is None:
             logger.error("Unable to find an expiration for %s" %stock_ticker)
         else:
@@ -49,7 +51,7 @@ def get_time_and_sales(symbol, interval):
         end = date.today()
 
         if date.weekday(date.today()) < 5:  # Monday - Friday
-            start = str(start) + " 9:30"
+            start = str(start) + " 09:30" # Ensure it is 09, not 9
             end = str(end) + " 13:00"
         elif date.weekday(date.today()) == 5: # Saturday
             start = str(start - timedelta(days=1))
@@ -59,13 +61,10 @@ def get_time_and_sales(symbol, interval):
             end = str(end - timedelta(days=2)) + " 13:00"
 
         if interval == "daily":
-            start = str(start) + " 09:30"
             interval = '1min'
         elif interval == "weekly":
-            start = str(start - timedelta(days=7)) + " 09:30"
             interval = '5min'
         elif interval == 'monthly':
-            start = str(start - timedelta(days=31)) + " 09:30"
             interval = '15min'
         else:  # unsure of passed in interval
             return None
@@ -74,6 +73,8 @@ def get_time_and_sales(symbol, interval):
         response = requests.get('https://api.tradier.com/v1/markets/timesales',
                                 params={'symbol': symbol, 'interval': interval, 'start': start, 'end': end, 'session_filter': 'open'},
                                 headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})
+        if response.status_code != 200:
+            logger.critical("Unable to get time_and_sales for %s, due to %s" % (symbol, response.content))                                
         return response.json()
     else:
         return None
@@ -107,8 +108,9 @@ def get_list_of_option_strikes(symbol,expiration):
             headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'}
         )
         json_response = response.json()
-        if response.status_code == 200:
-            return json_response
+        if response.status_code != 200:
+            logger.critical("Unable to get_list_of_option_strikes for %s and %s, due to %s" % (symbol, expiration, response.content))          
+        return json_response
     return None
 
 # def get_lookup_option_symbols(underlying):

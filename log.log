@@ -1,1 +1,31 @@
 [15/Aug/2020 15:34:58] INFO [optionchain:30] MSFT was found
+[17/Aug/2020 09:45:15] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
+[17/Aug/2020 09:45:15] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[17/Aug/2020 09:46:12] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
+[17/Aug/2020 09:46:12] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[17/Aug/2020 09:46:15] ERROR [optionchain:220] Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/Will/Visual Option Chain Graph/mysite/optionchain/views.py", line 215, in option_visual_graphs
+    response = get_time_and_sales(symbol=symbol, interval="daily")
+  File "/Users/Will/Visual Option Chain Graph/mysite/optionchain/tradier_api.py", line 74, in get_time_and_sales
+    return response.json()
+  File "/Users/Will/Visual Option Chain Graph/venv/lib/python3.8/site-packages/requests/models.py", line 889, in json
+    return complexjson.loads(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[17/Aug/2020 09:46:15] INFO [optionchain:221] Got and parsed the daily timestamps and price successfully
+[17/Aug/2020 09:46:15] WARNING [optionchain:224] Daily_timestamps or daily_price were parsed successfully, but one of them are empty for symbol: NIO200821C00013500
+[17/Aug/2020 09:46:18] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
+[17/Aug/2020 09:46:18] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[17/Aug/2020 09:47:53] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
+[17/Aug/2020 09:47:53] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[17/Aug/2020 09:51:21] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
+[17/Aug/2020 09:51:21] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[17/Aug/2020 09:52:25] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
+[17/Aug/2020 09:52:25] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[17/Aug/2020 09:52:27] INFO [optionchain:221] Got and parsed the daily timestamps and price successfully
