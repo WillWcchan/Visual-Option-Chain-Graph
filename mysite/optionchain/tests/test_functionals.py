@@ -20,7 +20,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
 
     def test_index_page(self):
         self.browser.get("http://127.0.0.1:8000/optionchain")
-        text_input = self.browser.find_elements_by_name("stock_ticker").pop()
+        text_input = self.browser.find_elements_by_class_name("form-control").pop()
         self.assertEquals(
             text_input.text,
             ""
@@ -28,7 +28,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
     
     def test_option_type_page(self):
         self.browser.get("http://127.0.0.1:8000/optionchain")
-        text_input = self.browser.find_element_by_name('stock_ticker').send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
+        text_input = self.browser.find_elements_by_class_name("form-control").pop().send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
         self.assertEquals(
             self.browser.current_url,
             "http://127.0.0.1:8000/optionchain/stockTicker/?stock_ticker=" + self.STOCK_TICKER_EXAMPLE
@@ -36,7 +36,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
 
     def test_option_type_CALL_page(self):
         self.browser.get("http://127.0.0.1:8000/optionchain")
-        text_input = self.browser.find_element_by_name('stock_ticker').send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
+        text_input = self.browser.find_elements_by_class_name("form-control").pop().send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
         self.assertEquals(
             self.browser.current_url,
             "http://127.0.0.1:8000/optionchain/stockTicker/?stock_ticker=" + self.STOCK_TICKER_EXAMPLE
@@ -49,7 +49,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
         
     def test_option_type_PUT_page(self):
         self.browser.get("http://127.0.0.1:8000/optionchain")
-        text_input = self.browser.find_element_by_name('stock_ticker').send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
+        text_input = self.browser.find_elements_by_class_name("form-control").pop().send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
         self.assertEquals(
             self.browser.current_url,
             "http://127.0.0.1:8000/optionchain/stockTicker/?stock_ticker=" + self.STOCK_TICKER_EXAMPLE
@@ -62,7 +62,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
 
     def test_option_date_with_valid_call_and_stock_ticker(self):
         self.browser.get("http://127.0.0.1:8000/optionchain")
-        text_input = self.browser.find_element_by_name('stock_ticker').send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
+        text_input = self.browser.find_elements_by_class_name("form-control").pop().send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
         self.assertEquals(
             self.browser.current_url,
             "http://127.0.0.1:8000/optionchain/stockTicker/?stock_ticker=" + self.STOCK_TICKER_EXAMPLE
@@ -83,7 +83,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
 
     def test_option_date_with_valid_put_and_stock_ticker(self):
         self.browser.get("http://127.0.0.1:8000/optionchain")
-        text_input = self.browser.find_element_by_name('stock_ticker').send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
+        text_input = self.browser.find_elements_by_class_name("form-control").pop().send_keys(self.STOCK_TICKER_EXAMPLE + Keys.ENTER)
         self.assertEquals(
             self.browser.current_url,
             "http://127.0.0.1:8000/optionchain/stockTicker/?stock_ticker=" + self.STOCK_TICKER_EXAMPLE
