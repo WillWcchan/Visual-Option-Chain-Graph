@@ -67,3 +67,6 @@ ENV/
 
 # config
 config.py
+
+# ignore .vscode 
+.vscode
