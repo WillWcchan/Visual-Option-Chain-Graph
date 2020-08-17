@@ -8,8 +8,7 @@ import requests
 import json
 import sys
 import logging
-
-# Get an instance of a logger
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('optionchain')
 
 # Source: https://testdriven.io/blog/django-caching/x
