@@ -13,7 +13,7 @@ class TestOptionChainPage(StaticLiveServerTestCase):
 
     def setUp(self):
         self.STOCK_TICKER_EXAMPLE = "MSFT"
-        self.browser = webdriver.Chrome(executable_path="/Visual Option Chain Graph/mysite/optionchain/tests/chromedriver")
+        self.browser = webdriver.Chrome(executable_path="/mysite/optionchain/tests/chromedriver")
 
     def tearDown(self):
         self.browser.close()
