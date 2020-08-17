@@ -1,1 +1,194 @@
 [15/Aug/2020 15:34:58] INFO [optionchain:30] MSFT was found
+[15/Aug/2020 22:51:51] INFO [optionchain:29] msft was found
+[15/Aug/2020 22:51:55] INFO [optionchain:38] option's expiration exist for this stock ticker
+[15/Aug/2020 22:51:58] INFO [optionchain:55] option type CALL was found and saved as a session
+[15/Aug/2020 22:51:59] INFO [optionchain:70] option_expiration_converted and type are valid
+[15/Aug/2020 22:52:00] INFO [optionchain:87] Able to parse in the expiration date
+[15/Aug/2020 22:52:00] INFO [optionchain:94] Check if we have an option stored into our database for MSFT and 2020-08-21
+[15/Aug/2020 22:52:00] INFO [optionchain:133] Option does not exist in our database. Will make a REST API call to Tradier with MSFT and 2020-08-21
+[15/Aug/2020 22:52:01] INFO [optionchain:135] Recieved option chain from Tradier API
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00177500, Expiration: 2020-08-21, Strike: 177.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00177500, Expiration: 2020-08-21, Strike: 177.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00182500, Expiration: 2020-08-21, Strike: 182.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00182500, Expiration: 2020-08-21, Strike: 182.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00187500, Expiration: 2020-08-21, Strike: 187.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00187500, Expiration: 2020-08-21, Strike: 187.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00192500, Expiration: 2020-08-21, Strike: 192.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00192500, Expiration: 2020-08-21, Strike: 192.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00195000, Expiration: 2020-08-21, Strike: 195.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00195000, Expiration: 2020-08-21, Strike: 195.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00197500, Expiration: 2020-08-21, Strike: 197.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00197500, Expiration: 2020-08-21, Strike: 197.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00200000, Expiration: 2020-08-21, Strike: 200.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00200000, Expiration: 2020-08-21, Strike: 200.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00202500, Expiration: 2020-08-21, Strike: 202.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00202500, Expiration: 2020-08-21, Strike: 202.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00205000, Expiration: 2020-08-21, Strike: 205.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00205000, Expiration: 2020-08-21, Strike: 205.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00207500, Expiration: 2020-08-21, Strike: 207.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00207500, Expiration: 2020-08-21, Strike: 207.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00210000, Expiration: 2020-08-21, Strike: 210.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00210000, Expiration: 2020-08-21, Strike: 210.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00212500, Expiration: 2020-08-21, Strike: 212.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00212500, Expiration: 2020-08-21, Strike: 212.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00215000, Expiration: 2020-08-21, Strike: 215.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00215000, Expiration: 2020-08-21, Strike: 215.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00217500, Expiration: 2020-08-21, Strike: 217.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00217500, Expiration: 2020-08-21, Strike: 217.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00220000, Expiration: 2020-08-21, Strike: 220.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00220000, Expiration: 2020-08-21, Strike: 220.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00222500, Expiration: 2020-08-21, Strike: 222.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00222500, Expiration: 2020-08-21, Strike: 222.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00225000, Expiration: 2020-08-21, Strike: 225.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00225000, Expiration: 2020-08-21, Strike: 225.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00227500, Expiration: 2020-08-21, Strike: 227.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00227500, Expiration: 2020-08-21, Strike: 227.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00230000, Expiration: 2020-08-21, Strike: 230.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00230000, Expiration: 2020-08-21, Strike: 230.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00232500, Expiration: 2020-08-21, Strike: 232.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00232500, Expiration: 2020-08-21, Strike: 232.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00235000, Expiration: 2020-08-21, Strike: 235.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00235000, Expiration: 2020-08-21, Strike: 235.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00237500, Expiration: 2020-08-21, Strike: 237.5, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00237500, Expiration: 2020-08-21, Strike: 237.5, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00240000, Expiration: 2020-08-21, Strike: 240.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00240000, Expiration: 2020-08-21, Strike: 240.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00245000, Expiration: 2020-08-21, Strike: 245.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00245000, Expiration: 2020-08-21, Strike: 245.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00250000, Expiration: 2020-08-21, Strike: 250.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00250000, Expiration: 2020-08-21, Strike: 250.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00255000, Expiration: 2020-08-21, Strike: 255.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00255000, Expiration: 2020-08-21, Strike: 255.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00260000, Expiration: 2020-08-21, Strike: 260.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00260000, Expiration: 2020-08-21, Strike: 260.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00265000, Expiration: 2020-08-21, Strike: 265.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00265000, Expiration: 2020-08-21, Strike: 265.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00270000, Expiration: 2020-08-21, Strike: 270.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00270000, Expiration: 2020-08-21, Strike: 270.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00275000, Expiration: 2020-08-21, Strike: 275.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00275000, Expiration: 2020-08-21, Strike: 275.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00280000, Expiration: 2020-08-21, Strike: 280.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00280000, Expiration: 2020-08-21, Strike: 280.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00285000, Expiration: 2020-08-21, Strike: 285.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00285000, Expiration: 2020-08-21, Strike: 285.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00290000, Expiration: 2020-08-21, Strike: 290.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00290000, Expiration: 2020-08-21, Strike: 290.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00295000, Expiration: 2020-08-21, Strike: 295.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00295000, Expiration: 2020-08-21, Strike: 295.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821P00300000, Expiration: 2020-08-21, Strike: 300.0, Ticker: MSFT, Type: put, Expiration Type: standard
+[15/Aug/2020 22:52:01] INFO [optionchain:146] Creating the option and storing into the database
+[15/Aug/2020 22:52:01] INFO [optionchain:158] Finished creating the option Symbol: MSFT200821C00300000, Expiration: 2020-08-21, Strike: 300.0, Ticker: MSFT, Type: call, Expiration Type: standard
+[15/Aug/2020 22:52:28] INFO [optionchain:207] Able to get the MSFT200821C00210000 and 210.0 to show the visual graphs
+[15/Aug/2020 22:52:44] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[15/Aug/2020 22:53:36] INFO [optionchain:207] Able to get the MSFT200821C00210000 and 210.0 to show the visual graphs
+[15/Aug/2020 22:53:37] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[15/Aug/2020 22:53:39] INFO [optionchain:221] Got and parsed the daily timestamps and price successfully
