@@ -1,5 +1,4 @@
 # Ignore the Python virtual environment
-/venv
 
 # Ignore the requirments.txt
 requirements.txt
