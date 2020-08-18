@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - "3.7"
+
+cache:
+  - pip
+  
+# setup environment
+env:
+  - DJANGO_VERSION=2.2.15
+services:
+  - sqlite3
+
+# install dependencies
+install:
+  - pip install -r requirements.txt
+
+# run test scripts
+script:
+  - python manage.py test
