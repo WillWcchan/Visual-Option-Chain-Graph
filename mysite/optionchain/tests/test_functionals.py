@@ -11,12 +11,12 @@ import time
 # python manage.py test optionchain.tests.test_functionals --parallel=4
 class TestOptionChainPage(StaticLiveServerTestCase):
 
-    # def setUp(self):
-    #     self.STOCK_TICKER_EXAMPLE = "MSFT"
-    #     self.browser = webdriver.Chrome(executable_path="/mysite/optionchain/tests/chromedriver")
+    def setUp(self):
+        self.STOCK_TICKER_EXAMPLE = "MSFT"
+        self.browser = webdriver.Chrome(executable_path="/mysite/optionchain/tests/chromedriver")
 
-    # def tearDown(self):
-    #     self.browser.close()
+    def tearDown(self):
+        self.browser.close()
 
     # def test_index_page(self):
     #     self.browser.get("http://127.0.0.1:8000/optionchain")
@@ -132,11 +132,3 @@ class TestOptionChainPage(StaticLiveServerTestCase):
     #         self.browser.current_url,
     #         "http://127.0.0.1:8000/optionchain/stockTicker/optionType/optionDate/optionVisualGraphs/?symbol=%s+%s" % (option[0]['symbol'], option[0]['strike'])
     #     )        
-
-        
-
-
-    
-        
-
-        

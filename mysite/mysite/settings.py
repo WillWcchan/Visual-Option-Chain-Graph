@@ -25,7 +25,7 @@ SECRET_KEY = '@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-env.eba-c5qttjmx.us-west-1.elasticbeanstalk.com']
 
 STATICFILES_DIRS = [
     "/mysite/optionchain/static",
