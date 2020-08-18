@@ -1,31 +1,941 @@
-[15/Aug/2020 15:34:58] INFO [optionchain:30] MSFT was found
-[17/Aug/2020 09:45:15] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
-[17/Aug/2020 09:45:15] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
-[17/Aug/2020 09:46:12] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
-[17/Aug/2020 09:46:12] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
-[17/Aug/2020 09:46:15] ERROR [optionchain:220] Expecting value: line 1 column 1 (char 0)
-Traceback (most recent call last):
-  File "/Users/Will/Visual Option Chain Graph/mysite/optionchain/views.py", line 215, in option_visual_graphs
-    response = get_time_and_sales(symbol=symbol, interval="daily")
-  File "/Users/Will/Visual Option Chain Graph/mysite/optionchain/tradier_api.py", line 74, in get_time_and_sales
-    return response.json()
-  File "/Users/Will/Visual Option Chain Graph/venv/lib/python3.8/site-packages/requests/models.py", line 889, in json
-    return complexjson.loads(
-  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/json/__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/json/decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/json/decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-[17/Aug/2020 09:46:15] INFO [optionchain:221] Got and parsed the daily timestamps and price successfully
-[17/Aug/2020 09:46:15] WARNING [optionchain:224] Daily_timestamps or daily_price were parsed successfully, but one of them are empty for symbol: NIO200821C00013500
-[17/Aug/2020 09:46:18] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
-[17/Aug/2020 09:46:18] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
-[17/Aug/2020 09:47:53] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
-[17/Aug/2020 09:47:53] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
-[17/Aug/2020 09:51:21] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
-[17/Aug/2020 09:51:21] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
-[17/Aug/2020 09:52:25] INFO [optionchain:207] Able to get the NIO200821C00013500 and 13.5 to show the visual graphs
-[17/Aug/2020 09:52:25] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
-[17/Aug/2020 09:52:27] INFO [optionchain:221] Got and parsed the daily timestamps and price successfully
+[18/Aug/2020 16:50:45] INFO [optionchain:29] IBM was found
+[18/Aug/2020 16:50:46] INFO [optionchain:38] option's expiration exist for this stock ticker
+[18/Aug/2020 16:50:46] INFO [optionchain:55] option type CALL was found and saved as a session
+[18/Aug/2020 16:50:46] INFO [optionchain:70] option_expiration_converted and type are valid
+[18/Aug/2020 16:50:47] INFO [optionchain:87] Able to parse in the expiration date
+[18/Aug/2020 16:50:47] INFO [optionchain:94] Check if we have an option stored into our database for IBM and 2020-08-21
+[18/Aug/2020 16:50:47] INFO [optionchain:133] Option does not exist in our database. Will make a REST API call to Tradier with IBM and 2020-08-21
+[18/Aug/2020 16:50:47] INFO [optionchain:135] Recieved option chain from Tradier API
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00060000, Expiration: 2020-08-21, Strike: 60.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00060000, Expiration: 2020-08-21, Strike: 60.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00065000, Expiration: 2020-08-21, Strike: 65.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00065000, Expiration: 2020-08-21, Strike: 65.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00070000, Expiration: 2020-08-21, Strike: 70.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00070000, Expiration: 2020-08-21, Strike: 70.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00075000, Expiration: 2020-08-21, Strike: 75.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00075000, Expiration: 2020-08-21, Strike: 75.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00080000, Expiration: 2020-08-21, Strike: 80.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00080000, Expiration: 2020-08-21, Strike: 80.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00085000, Expiration: 2020-08-21, Strike: 85.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00085000, Expiration: 2020-08-21, Strike: 85.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00090000, Expiration: 2020-08-21, Strike: 90.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00090000, Expiration: 2020-08-21, Strike: 90.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00095000, Expiration: 2020-08-21, Strike: 95.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00095000, Expiration: 2020-08-21, Strike: 95.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00100000, Expiration: 2020-08-21, Strike: 100.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00100000, Expiration: 2020-08-21, Strike: 100.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00105000, Expiration: 2020-08-21, Strike: 105.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00105000, Expiration: 2020-08-21, Strike: 105.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00110000, Expiration: 2020-08-21, Strike: 110.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00110000, Expiration: 2020-08-21, Strike: 110.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00111000, Expiration: 2020-08-21, Strike: 111.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00111000, Expiration: 2020-08-21, Strike: 111.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00112000, Expiration: 2020-08-21, Strike: 112.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00112000, Expiration: 2020-08-21, Strike: 112.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00113000, Expiration: 2020-08-21, Strike: 113.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00113000, Expiration: 2020-08-21, Strike: 113.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00114000, Expiration: 2020-08-21, Strike: 114.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00114000, Expiration: 2020-08-21, Strike: 114.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00115000, Expiration: 2020-08-21, Strike: 115.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00115000, Expiration: 2020-08-21, Strike: 115.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00116000, Expiration: 2020-08-21, Strike: 116.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00116000, Expiration: 2020-08-21, Strike: 116.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00117000, Expiration: 2020-08-21, Strike: 117.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00117000, Expiration: 2020-08-21, Strike: 117.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00118000, Expiration: 2020-08-21, Strike: 118.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00118000, Expiration: 2020-08-21, Strike: 118.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00119000, Expiration: 2020-08-21, Strike: 119.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00119000, Expiration: 2020-08-21, Strike: 119.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00120000, Expiration: 2020-08-21, Strike: 120.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00120000, Expiration: 2020-08-21, Strike: 120.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00121000, Expiration: 2020-08-21, Strike: 121.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00121000, Expiration: 2020-08-21, Strike: 121.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00122000, Expiration: 2020-08-21, Strike: 122.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00122000, Expiration: 2020-08-21, Strike: 122.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00123000, Expiration: 2020-08-21, Strike: 123.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00123000, Expiration: 2020-08-21, Strike: 123.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00124000, Expiration: 2020-08-21, Strike: 124.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00124000, Expiration: 2020-08-21, Strike: 124.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00125000, Expiration: 2020-08-21, Strike: 125.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00125000, Expiration: 2020-08-21, Strike: 125.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00126000, Expiration: 2020-08-21, Strike: 126.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00126000, Expiration: 2020-08-21, Strike: 126.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00127000, Expiration: 2020-08-21, Strike: 127.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00127000, Expiration: 2020-08-21, Strike: 127.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00128000, Expiration: 2020-08-21, Strike: 128.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00128000, Expiration: 2020-08-21, Strike: 128.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00129000, Expiration: 2020-08-21, Strike: 129.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00129000, Expiration: 2020-08-21, Strike: 129.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00130000, Expiration: 2020-08-21, Strike: 130.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00130000, Expiration: 2020-08-21, Strike: 130.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00131000, Expiration: 2020-08-21, Strike: 131.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00131000, Expiration: 2020-08-21, Strike: 131.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00132000, Expiration: 2020-08-21, Strike: 132.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00132000, Expiration: 2020-08-21, Strike: 132.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00133000, Expiration: 2020-08-21, Strike: 133.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00133000, Expiration: 2020-08-21, Strike: 133.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00134000, Expiration: 2020-08-21, Strike: 134.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00134000, Expiration: 2020-08-21, Strike: 134.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00135000, Expiration: 2020-08-21, Strike: 135.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00135000, Expiration: 2020-08-21, Strike: 135.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00136000, Expiration: 2020-08-21, Strike: 136.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00136000, Expiration: 2020-08-21, Strike: 136.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00137000, Expiration: 2020-08-21, Strike: 137.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00137000, Expiration: 2020-08-21, Strike: 137.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00138000, Expiration: 2020-08-21, Strike: 138.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00138000, Expiration: 2020-08-21, Strike: 138.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00140000, Expiration: 2020-08-21, Strike: 140.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00140000, Expiration: 2020-08-21, Strike: 140.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:47] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:47] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:47] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:48] INFO [optionchain:29] IBM was found
+[18/Aug/2020 16:50:48] INFO [optionchain:38] option's expiration exist for this stock ticker
+[18/Aug/2020 16:50:48] INFO [optionchain:55] option type PUT was found and saved as a session
+[18/Aug/2020 16:50:48] INFO [optionchain:70] option_expiration_converted and type are valid
+[18/Aug/2020 16:50:49] INFO [optionchain:87] Able to parse in the expiration date
+[18/Aug/2020 16:50:49] INFO [optionchain:94] Check if we have an option stored into our database for IBM and 2020-08-21
+[18/Aug/2020 16:50:49] INFO [optionchain:133] Option does not exist in our database. Will make a REST API call to Tradier with IBM and 2020-08-21
+[18/Aug/2020 16:50:49] INFO [optionchain:135] Recieved option chain from Tradier API
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00060000, Expiration: 2020-08-21, Strike: 60.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00060000, Expiration: 2020-08-21, Strike: 60.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00065000, Expiration: 2020-08-21, Strike: 65.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00065000, Expiration: 2020-08-21, Strike: 65.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00070000, Expiration: 2020-08-21, Strike: 70.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00070000, Expiration: 2020-08-21, Strike: 70.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00075000, Expiration: 2020-08-21, Strike: 75.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00075000, Expiration: 2020-08-21, Strike: 75.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00080000, Expiration: 2020-08-21, Strike: 80.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00080000, Expiration: 2020-08-21, Strike: 80.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00085000, Expiration: 2020-08-21, Strike: 85.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00085000, Expiration: 2020-08-21, Strike: 85.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00090000, Expiration: 2020-08-21, Strike: 90.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00090000, Expiration: 2020-08-21, Strike: 90.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00095000, Expiration: 2020-08-21, Strike: 95.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00095000, Expiration: 2020-08-21, Strike: 95.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00100000, Expiration: 2020-08-21, Strike: 100.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00100000, Expiration: 2020-08-21, Strike: 100.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00105000, Expiration: 2020-08-21, Strike: 105.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00105000, Expiration: 2020-08-21, Strike: 105.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00110000, Expiration: 2020-08-21, Strike: 110.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00110000, Expiration: 2020-08-21, Strike: 110.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00111000, Expiration: 2020-08-21, Strike: 111.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00111000, Expiration: 2020-08-21, Strike: 111.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00112000, Expiration: 2020-08-21, Strike: 112.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00112000, Expiration: 2020-08-21, Strike: 112.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00113000, Expiration: 2020-08-21, Strike: 113.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00113000, Expiration: 2020-08-21, Strike: 113.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00114000, Expiration: 2020-08-21, Strike: 114.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00114000, Expiration: 2020-08-21, Strike: 114.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00115000, Expiration: 2020-08-21, Strike: 115.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00115000, Expiration: 2020-08-21, Strike: 115.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00116000, Expiration: 2020-08-21, Strike: 116.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00116000, Expiration: 2020-08-21, Strike: 116.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00117000, Expiration: 2020-08-21, Strike: 117.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00117000, Expiration: 2020-08-21, Strike: 117.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00118000, Expiration: 2020-08-21, Strike: 118.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00118000, Expiration: 2020-08-21, Strike: 118.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00119000, Expiration: 2020-08-21, Strike: 119.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00119000, Expiration: 2020-08-21, Strike: 119.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00120000, Expiration: 2020-08-21, Strike: 120.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00120000, Expiration: 2020-08-21, Strike: 120.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00121000, Expiration: 2020-08-21, Strike: 121.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00121000, Expiration: 2020-08-21, Strike: 121.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00122000, Expiration: 2020-08-21, Strike: 122.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00122000, Expiration: 2020-08-21, Strike: 122.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00123000, Expiration: 2020-08-21, Strike: 123.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00123000, Expiration: 2020-08-21, Strike: 123.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00124000, Expiration: 2020-08-21, Strike: 124.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00124000, Expiration: 2020-08-21, Strike: 124.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00125000, Expiration: 2020-08-21, Strike: 125.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00125000, Expiration: 2020-08-21, Strike: 125.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00126000, Expiration: 2020-08-21, Strike: 126.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00126000, Expiration: 2020-08-21, Strike: 126.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00127000, Expiration: 2020-08-21, Strike: 127.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00127000, Expiration: 2020-08-21, Strike: 127.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00128000, Expiration: 2020-08-21, Strike: 128.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00128000, Expiration: 2020-08-21, Strike: 128.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00129000, Expiration: 2020-08-21, Strike: 129.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00129000, Expiration: 2020-08-21, Strike: 129.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00130000, Expiration: 2020-08-21, Strike: 130.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00130000, Expiration: 2020-08-21, Strike: 130.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00131000, Expiration: 2020-08-21, Strike: 131.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00131000, Expiration: 2020-08-21, Strike: 131.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00132000, Expiration: 2020-08-21, Strike: 132.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00132000, Expiration: 2020-08-21, Strike: 132.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00133000, Expiration: 2020-08-21, Strike: 133.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00133000, Expiration: 2020-08-21, Strike: 133.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00134000, Expiration: 2020-08-21, Strike: 134.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00134000, Expiration: 2020-08-21, Strike: 134.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00135000, Expiration: 2020-08-21, Strike: 135.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00135000, Expiration: 2020-08-21, Strike: 135.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00136000, Expiration: 2020-08-21, Strike: 136.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00136000, Expiration: 2020-08-21, Strike: 136.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00137000, Expiration: 2020-08-21, Strike: 137.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00137000, Expiration: 2020-08-21, Strike: 137.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00138000, Expiration: 2020-08-21, Strike: 138.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00138000, Expiration: 2020-08-21, Strike: 138.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00140000, Expiration: 2020-08-21, Strike: 140.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00140000, Expiration: 2020-08-21, Strike: 140.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:49] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:49] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:49] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:50] INFO [optionchain:29] IBM was found
+[18/Aug/2020 16:50:50] INFO [optionchain:38] option's expiration exist for this stock ticker
+[18/Aug/2020 16:50:50] INFO [optionchain:55] option type CALL was found and saved as a session
+[18/Aug/2020 16:50:51] INFO [optionchain:70] option_expiration_converted and type are valid
+[18/Aug/2020 16:50:51] INFO [optionchain:29] IBM was found
+[18/Aug/2020 16:50:51] INFO [optionchain:38] option's expiration exist for this stock ticker
+[18/Aug/2020 16:50:51] INFO [optionchain:55] option type PUT was found and saved as a session
+[18/Aug/2020 16:50:51] INFO [optionchain:70] option_expiration_converted and type are valid
+[18/Aug/2020 16:50:51] INFO [optionchain:29] IBM was found
+[18/Aug/2020 16:50:52] INFO [optionchain:38] option's expiration exist for this stock ticker
+[18/Aug/2020 16:50:52] INFO [optionchain:55] option type CALL was found and saved as a session
+[18/Aug/2020 16:50:52] INFO [optionchain:70] option_expiration_converted and type are valid
+[18/Aug/2020 16:50:53] INFO [optionchain:87] Able to parse in the expiration date
+[18/Aug/2020 16:50:53] INFO [optionchain:94] Check if we have an option stored into our database for IBM and 2020-08-21
+[18/Aug/2020 16:50:53] INFO [optionchain:133] Option does not exist in our database. Will make a REST API call to Tradier with IBM and 2020-08-21
+[18/Aug/2020 16:50:53] INFO [optionchain:135] Recieved option chain from Tradier API
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00060000, Expiration: 2020-08-21, Strike: 60.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00060000, Expiration: 2020-08-21, Strike: 60.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00065000, Expiration: 2020-08-21, Strike: 65.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00065000, Expiration: 2020-08-21, Strike: 65.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00070000, Expiration: 2020-08-21, Strike: 70.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00070000, Expiration: 2020-08-21, Strike: 70.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00075000, Expiration: 2020-08-21, Strike: 75.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00075000, Expiration: 2020-08-21, Strike: 75.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00080000, Expiration: 2020-08-21, Strike: 80.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00080000, Expiration: 2020-08-21, Strike: 80.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00085000, Expiration: 2020-08-21, Strike: 85.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00085000, Expiration: 2020-08-21, Strike: 85.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00090000, Expiration: 2020-08-21, Strike: 90.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00090000, Expiration: 2020-08-21, Strike: 90.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00095000, Expiration: 2020-08-21, Strike: 95.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00095000, Expiration: 2020-08-21, Strike: 95.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00100000, Expiration: 2020-08-21, Strike: 100.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00100000, Expiration: 2020-08-21, Strike: 100.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00105000, Expiration: 2020-08-21, Strike: 105.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00105000, Expiration: 2020-08-21, Strike: 105.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00110000, Expiration: 2020-08-21, Strike: 110.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00110000, Expiration: 2020-08-21, Strike: 110.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00111000, Expiration: 2020-08-21, Strike: 111.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00111000, Expiration: 2020-08-21, Strike: 111.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00112000, Expiration: 2020-08-21, Strike: 112.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00112000, Expiration: 2020-08-21, Strike: 112.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00113000, Expiration: 2020-08-21, Strike: 113.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00113000, Expiration: 2020-08-21, Strike: 113.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00114000, Expiration: 2020-08-21, Strike: 114.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00114000, Expiration: 2020-08-21, Strike: 114.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00115000, Expiration: 2020-08-21, Strike: 115.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00115000, Expiration: 2020-08-21, Strike: 115.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00116000, Expiration: 2020-08-21, Strike: 116.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00116000, Expiration: 2020-08-21, Strike: 116.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00117000, Expiration: 2020-08-21, Strike: 117.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00117000, Expiration: 2020-08-21, Strike: 117.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00118000, Expiration: 2020-08-21, Strike: 118.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00118000, Expiration: 2020-08-21, Strike: 118.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00119000, Expiration: 2020-08-21, Strike: 119.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00119000, Expiration: 2020-08-21, Strike: 119.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00120000, Expiration: 2020-08-21, Strike: 120.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00120000, Expiration: 2020-08-21, Strike: 120.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00121000, Expiration: 2020-08-21, Strike: 121.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00121000, Expiration: 2020-08-21, Strike: 121.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00122000, Expiration: 2020-08-21, Strike: 122.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00122000, Expiration: 2020-08-21, Strike: 122.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00123000, Expiration: 2020-08-21, Strike: 123.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00123000, Expiration: 2020-08-21, Strike: 123.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00124000, Expiration: 2020-08-21, Strike: 124.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00124000, Expiration: 2020-08-21, Strike: 124.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00125000, Expiration: 2020-08-21, Strike: 125.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00125000, Expiration: 2020-08-21, Strike: 125.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00126000, Expiration: 2020-08-21, Strike: 126.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00126000, Expiration: 2020-08-21, Strike: 126.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00127000, Expiration: 2020-08-21, Strike: 127.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00127000, Expiration: 2020-08-21, Strike: 127.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00128000, Expiration: 2020-08-21, Strike: 128.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00128000, Expiration: 2020-08-21, Strike: 128.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00129000, Expiration: 2020-08-21, Strike: 129.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00129000, Expiration: 2020-08-21, Strike: 129.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00130000, Expiration: 2020-08-21, Strike: 130.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00130000, Expiration: 2020-08-21, Strike: 130.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00131000, Expiration: 2020-08-21, Strike: 131.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00131000, Expiration: 2020-08-21, Strike: 131.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00132000, Expiration: 2020-08-21, Strike: 132.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00132000, Expiration: 2020-08-21, Strike: 132.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00133000, Expiration: 2020-08-21, Strike: 133.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00133000, Expiration: 2020-08-21, Strike: 133.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00134000, Expiration: 2020-08-21, Strike: 134.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00134000, Expiration: 2020-08-21, Strike: 134.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00135000, Expiration: 2020-08-21, Strike: 135.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00135000, Expiration: 2020-08-21, Strike: 135.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00136000, Expiration: 2020-08-21, Strike: 136.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00136000, Expiration: 2020-08-21, Strike: 136.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00137000, Expiration: 2020-08-21, Strike: 137.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00137000, Expiration: 2020-08-21, Strike: 137.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00138000, Expiration: 2020-08-21, Strike: 138.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00138000, Expiration: 2020-08-21, Strike: 138.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00140000, Expiration: 2020-08-21, Strike: 140.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00140000, Expiration: 2020-08-21, Strike: 140.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00145000, Expiration: 2020-08-21, Strike: 145.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00150000, Expiration: 2020-08-21, Strike: 150.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00155000, Expiration: 2020-08-21, Strike: 155.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00160000, Expiration: 2020-08-21, Strike: 160.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00165000, Expiration: 2020-08-21, Strike: 165.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00170000, Expiration: 2020-08-21, Strike: 170.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00175000, Expiration: 2020-08-21, Strike: 175.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00180000, Expiration: 2020-08-21, Strike: 180.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00185000, Expiration: 2020-08-21, Strike: 185.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821P00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:53] INFO [optionchain:169] Creating the optionPrice for the recently created option to store into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:180] Finished creating the optionPrice
+[18/Aug/2020 16:50:53] INFO [optionchain:146] Creating the option and storing into the database
+[18/Aug/2020 16:50:53] INFO [optionchain:158] Finished creating the option Symbol: IBM200821C00190000, Expiration: 2020-08-21, Strike: 190.0, Ticker: IBM, Expiration Type: standard
+[18/Aug/2020 16:50:54] INFO [optionchain:207] Able to get the IBM200821P00125000 and 125.0 to show the visual graphs
+[18/Aug/2020 16:50:54] INFO [optionchain:211] Making RESTAPI call to Tradier to get the daily timestamps and price
+[18/Aug/2020 16:50:55] INFO [optionchain:221] Got and parsed the daily timestamps and price successfully
+[18/Aug/2020 16:50:55] ERROR [optionchain:25]  was not found
+[18/Aug/2020 16:50:55] INFO [optionchain:29] ROFL was found
+[18/Aug/2020 16:50:55] ERROR [optionchain:22] Unable to find an expiration for ROFL
+[18/Aug/2020 16:50:55] ERROR [optionchain:41] option's expiration does not exist for this stock ticker
+[18/Aug/2020 16:50:55] INFO [optionchain:29] IBM was found
+[18/Aug/2020 16:50:56] INFO [optionchain:38] option's expiration exist for this stock ticker

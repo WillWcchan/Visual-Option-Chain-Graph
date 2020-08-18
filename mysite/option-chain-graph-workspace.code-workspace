@@ -1,28 +1,7 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		}
-	],
-	"settings": {
-		"git.ignoreLimitWarning": true,
-		"python.pythonPath": "venv/bin/python"
-	},
-	"launch": {
-		"version": "0.2.0",
-		"configurations": [
-
-			{
-				"name": "Python: Django",
-				"type": "python",
-				"request": "launch",
-				"program": "${workspaceFolder}/mysite/manage.py",
-				"args": [
-					"runserver",
-					"--noreload"
-				],
-				"django": true
-			}
-		]
-	}
+    "folders": [
+        {
+            "path": ".."
+        }
+    ]
 }
