@@ -21,6 +21,6 @@ before_script:
 
 # run test scripts
 script:
-  - python manage.py makemigrations
+  - python manage.py makemigrations optionchain
   - python manage.py migrate
   - python manage.py test
