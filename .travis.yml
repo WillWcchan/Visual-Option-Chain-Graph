@@ -1,3 +1,5 @@
+dist:xenial
+os:linux
 language: python
 
 python:
@@ -6,8 +8,6 @@ python:
 # setup environment
 env:
   - DJANGO_VERSION=2.2.15
-services:
-  - sqlite3
 
 # install dependencies
 install:
@@ -27,10 +27,8 @@ script:
 
 
 notifications:
-  slack: 
+  slack:
     rooms:
-      - willchan:sLjSbEOfiHxBBcmm33M6aguE#app-development
-      - willchan:sLjSbEOfiHxBBcmm33M6agu#random
-    on_success: always
-    on_failure: always
+	  - willchan:96CjJeUdPsiIh7Y8b7Z6QWis#general
+	  - willchan:96CjJeUdPsiIh7Y8b7Z6QWis#random
     
