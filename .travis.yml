@@ -1,3 +1,5 @@
+dist: xenial
+sudo: required
 language: python
 
 python:
@@ -8,7 +10,7 @@ cache:
 
 virtualenv:
   system_site_packages: true
-  
+
 # setup environment
 env:
   - DJANGO_VERSION=2.2.15
@@ -17,6 +19,7 @@ services:
 
 # install dependencies
 install:
+  - pip install virtualenv
   - pip install -r requirements.txt
 
 # run test scripts
