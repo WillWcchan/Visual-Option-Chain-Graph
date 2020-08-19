@@ -27,8 +27,4 @@ script:
 
 
 notifications:
-  slack:
-    rooms:
-	  - willchan:96CjJeUdPsiIh7Y8b7Z6QWis#general
-	  - willchan:96CjJeUdPsiIh7Y8b7Z6QWis#random
-    
+  slack: willchan:96CjJeUdPsiIh7Y8b7Z6QWis
