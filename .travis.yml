@@ -1,15 +1,8 @@
 dist: xenial
-sudo: required
 language: python
 
 python:
-  - "3.7"
-
-cache:
-  - pip
-
-virtualenv:
-  system_site_packages: true
+  - "2.7"
 
 # setup environment
 env:
