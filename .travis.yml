@@ -5,6 +5,9 @@ python:
 
 cache:
   - pip
+
+virtualenv:
+  system_site_packages: true
   
 # setup environment
 env:
