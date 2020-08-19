@@ -24,3 +24,11 @@ script:
   - python manage.py makemigrations optionchain
   - python manage.py migrate
   - python manage.py test
+
+
+notifications:
+  slack: 
+    rooms:
+      - willchan:sLjSbEOfiHxBBcmm33M6aguE
+    on_success: always  # change: send a notification when the build status changes.
+    on_failure: always  # always: always send a notification.
