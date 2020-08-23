@@ -1,0 +1,29 @@
+version: '3.7'
+
+#https://docs.docker.com/compose/django/
+services:
+    db:
+        image: postgres:12
+        container_name: "postgres-12"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        environment: 
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgres
+        ports:
+            - "5432:5432"
+
+    web:
+        build: .
+        command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        container_name: "visual-option-chain-web"
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+    
+volumes:
+  postgres_data:

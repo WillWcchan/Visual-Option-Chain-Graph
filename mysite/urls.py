@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
 from optionchain import views as v
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     # ex /optionchain/
@@ -31,3 +32,5 @@ urlpatterns = [
     url(r'^optionchain/stockTicker/optionType/optionDate/optionVisualGraphs/$', v.option_visual_graphs, name = 'optionVisualGraphs'),
     url(r'^admin/', admin.site.urls),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

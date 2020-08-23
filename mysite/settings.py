@@ -18,17 +18,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um'
+SECRET_KEY = "@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 1
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost","0.0.0.0"]
 
-STATICFILES_DIRS = [
-    "../optionchain/static",
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,"assets"),
+)
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
+STATIC_URL = '/static/'
 
 # Application definition
 
@@ -76,11 +79,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+# https://wsvincent.com/django-docker-postgresql/
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db', # set in docker-compose.yml
+        'PORT': 5432, # default postgres port
+    },
+    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
     }
 }
 
@@ -117,11 +128,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # https://stackoverflow.com/questions/47585583/the-number-of-get-post-parameters-exceeded-settings-data-upload-max-number-field
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240  # higher than the count of fields
