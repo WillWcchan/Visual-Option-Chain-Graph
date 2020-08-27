@@ -1,9 +1,9 @@
-dist: trusty
+dist: bionic
 os: linux
 language: python
 
 python:
-  - "3.7"
+  - "3.6"
 
 services:
   - postgresql
@@ -15,11 +15,11 @@ env:
   - DJANGO_VERSION=2.2.15
 
 addons:
-  postgresql: "12"
+  postgresql: "10"
   apt:
     packages:
-      - postgresql-12
-      - postgresql-client-12
+      - postgresql-10
+      - postgresql-client-10
 
 before_script:
   - sudo apt-get update
