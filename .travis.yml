@@ -3,28 +3,26 @@ os: linux
 language: python
 
 python:
-  - "3.5"
+  - "3.7"
 
-# setup environment
+services:
+  - postgresql
+
 env:
   - DJANGO_VERSION=2.2.15
+  - PGUSER=postgres
+  - PGPORT=5432
 
-# install dependencies
-install:
-  - pip install -r requirements.txt
+addons:
+  postgresql: "12"
 
 before_script:
-  - pwd
   - virtualenv env
   - source env/bin/activate
-  - pip install -r requirements.txt
-
-# run test scripts
-script:
-  - python manage.py makemigrations optionchain
+  - pip install -r requirements.txt 
+  - psql -c 'create database IF NOT EXISTS travis_ci_test;' -U postgres
+  - python manage.py makemigrations
   - python manage.py migrate
+
+script:
   - python manage.py test
-
-
-notifications:
-  slack: willchan:96CjJeUdPsiIh7Y8b7Z6QWis
