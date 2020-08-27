@@ -87,7 +87,7 @@ if 'TRAVIS' in os.environ:
             'NAME': 'postgres',
             'USER': 'postgres',
             'PASSWORD':'',
-            'HOST': 'db', # set in docker-compose.yml
+            'HOST': 'localhost', # set in docker-compose.yml
             'PORT': 5432,  # default postgres port,
             # https://docs.djangoproject.com/en/3.0/ref/settings/#test
         },
