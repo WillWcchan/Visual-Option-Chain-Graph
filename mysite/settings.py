@@ -90,9 +90,6 @@ if 'TRAVIS' in os.environ:
             'HOST': 'db', # set in docker-compose.yml
             'PORT': 5432,  # default postgres port,
             # https://docs.djangoproject.com/en/3.0/ref/settings/#test
-            'TEST': {
-                'NAME': 'travis_ci_test',
-            },
         },
     }
 else:

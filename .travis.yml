@@ -1,4 +1,4 @@
-dist: xenial
+dist: trusty
 os: linux
 language: python
 
@@ -11,6 +11,7 @@ services:
 env:
   global:
   - PGPORT=5432
+  - PGUSER=postgres
   - DJANGO_VERSION=2.2.15
 
 addons:
