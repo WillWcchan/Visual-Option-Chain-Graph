@@ -84,7 +84,7 @@ if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'travis_ci_test',
+            'NAME': 'postgres',
             'USER': 'postgres',
             'PASSWORD':'',
             'HOST': 'db', # set in docker-compose.yml
