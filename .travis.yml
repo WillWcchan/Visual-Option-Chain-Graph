@@ -7,9 +7,10 @@ python:
 
 services:
   - postgresql
+  - PGPORT=5432
 
 env:
-  DJANGO_VERSION=2.2.15
+  - DJANGO_VERSION=2.2.15
 
 addons:
   postgresql: "12"
@@ -23,4 +24,5 @@ before_script:
   - python manage.py migrate
 
 script:
+  # - docker-compose run web python manage.py test
   - python manage.py test

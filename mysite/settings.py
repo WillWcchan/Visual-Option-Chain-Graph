@@ -80,20 +80,28 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # https://wsvincent.com/django-docker-postgresql/
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db', # set in docker-compose.yml
-        'PORT': 5432, # default postgres port
-    },
-    'sqlite3': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'travis_ci_test',
+            'USER': 'postgres',
+            'PASSWORD':'',
+            'HOST': 'db', # set in docker-compose.yml
+            'PORT': 5432,  # default postgres port,
+            # https://docs.djangoproject.com/en/3.0/ref/settings/#test
+            'TEST': {
+                'NAME': 'travis_ci_test',
+            },
+        },
     }
-}
+else:
+    DATABASES = {
+        'sqlite3': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
