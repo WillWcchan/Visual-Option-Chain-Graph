@@ -76,6 +76,3 @@ ENV/
 
 # No need to send people my logs
 log.log
-
-# don't need .vscode settings
-.vscode
