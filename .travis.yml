@@ -23,7 +23,7 @@ addons:
 
 before_script:
   - sudo apt-get update
-  - psql -d postgres -U postgres
+  # psql -d postgres -U postgres
   - pip install -r requirements.txt 
   - python manage.py makemigrations
   - python manage.py migrate
