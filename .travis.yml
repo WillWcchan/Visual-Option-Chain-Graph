@@ -23,11 +23,6 @@ addons:
       - postgresql-10
       - postgresql-client-10
 
-before_install:
-  - docker-compose down
-  - docker build -t visual-option-chain-graph_web/latest .
-  - docker images
-
 before_script:
   - sudo apt-get update
   - pip install -r requirements.txt 
@@ -38,9 +33,13 @@ script:
   - python manage.py test
 
 after_success:
+  - docker ps
+  - docker images
+  - docker build -t visual-option-chain-graph .
+  - docker-compose down
   - docker-compose up 
   - docker images
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker tag visual-option-chain-graph_web willwcchan/visual-option-chain-graph_web:latest
-  - docker push willwcchan/visual-option-chain-graph_web:latest
+  - docker tag visual-option-chain-graph willwcchan/visual-option-chain-graph:latest
+  - docker push willwcchan/visual-option-chain-graph:latest
   
