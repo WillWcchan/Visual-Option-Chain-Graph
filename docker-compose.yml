@@ -4,7 +4,6 @@ version: '3.7'
 services:
     db:
         image: postgres:10
-        container_name: "postgres-10"
         volumes:
             - postgres_data:/var/lib/postgresql/data/
         environment: 
@@ -17,7 +16,6 @@ services:
     web:
         build: .
         command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-        container_name: "visual-option-chain-graph"
         volumes:
             - .:/code
         ports:

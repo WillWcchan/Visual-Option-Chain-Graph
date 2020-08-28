@@ -24,7 +24,6 @@ addons:
       - postgresql-client-10
 
 before_install:
-  - docker images
   - docker-compose down
 
 before_script:
@@ -37,7 +36,10 @@ script:
   - python manage.py test
 
 after_success:
-  - docker-compose images
+  - docker images
+  - docker built -t visual-option-chain_web/latest .
+  - docker-compose up 
+  - docker images
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker tag visual-option-chain_web willwcchan/visual-option-chain_web:latest
   - docker push willwcchan/visual-option-chain_web:latest
