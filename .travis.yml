@@ -14,6 +14,7 @@ env:
   - PGPORT=5432
   - PGUSER=postgres
   - DJANGO_VERSION=2.2.15
+  - DOCKER_COMPOSE_VERSION=1.25.5
 
 addons:
   postgresql: "10"
@@ -21,6 +22,10 @@ addons:
     packages:
       - postgresql-10
       - postgresql-client-10
+
+before_install:
+  - docker images
+  - docker-compose down
 
 before_script:
   - sudo apt-get update
@@ -30,13 +35,10 @@ before_script:
 
 script:
   - python manage.py test
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker tag visual-option-chain_graph willwcchan/visual-option-chain_graph:latest
-  - docker push willwcchan/visual-option-chain_graph:latest
 
-# https://docs.travis-ci.com/user/docker/
-before_install:
-  - echo "before_install"
-  - docker-compose ps
-  - docker-compose down
+after_success:
+  - docker-compose images
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker tag visual-option-chain_web willwcchan/visual-option-chain_web:latest
+  - docker push willwcchan/visual-option-chain_web:latest
   
