@@ -15,10 +15,11 @@ def get_option_expirations(stock_ticker):
                                 params={'symbol': stock_ticker, 'includeAllRoots': 'false', 'strikes': 'false'},
                                 headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})        
         dates = response.json()
+
         if response.status_code != 200:
             logger.critical("Unable to get option expiration for %s, due to %s" % (stock_ticker, response.content))
             
-        if dates["expirations"] is None:
+        if not dates["expirations"]:
             logger.error("Unable to find an expiration for %s" %stock_ticker)
         else:
             dates = dates["expirations"]["date"]
@@ -62,14 +63,7 @@ def get_time_and_sales(symbol, interval):
 
         if interval == "daily":
             interval = '1min'
-        elif interval == "weekly":
-            interval = '5min'
-        elif interval == 'monthly':
-            interval = '15min'
-        else:  # unsure of passed in interval
-            return None
 
-        # Finally make the request
         response = requests.get('https://api.tradier.com/v1/markets/timesales',
                                 params={'symbol': symbol, 'interval': interval, 'start': start, 'end': end, 'session_filter': 'open'},
                                 headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'})
@@ -89,13 +83,6 @@ def get_timestamp_and_price(json_response, interval):
                 date = dt.strptime(data['time'], "%Y-%m-%dT%H:%M:%S")
                 date = date.strftime("%-m/%-d/%y %H:%-M")
                 timestamps.append(str(date))
-
-        elif interval == 'monthly':
-            for data in json_response["series"]["data"]:
-                date = dt.strptime(data['time'], "%Y-%m-%dT%H:%M:%S")
-                date = date.strftime("%-m/%-d")
-                timestamps.append(str(date))
-
         price = [data['price'] for data in json_response["series"]["data"]]
         return timestamps, price
     else:
@@ -112,14 +99,3 @@ def get_list_of_option_strikes(symbol,expiration):
             logger.critical("Unable to get_list_of_option_strikes for %s and %s, due to %s" % (symbol, expiration, response.content))          
         return json_response
     return None
-
-# def get_lookup_option_symbols(underlying):
-#     if underlying:
-#         response = requests.get('https://api.tradier.com/v1/markets/options/lookup',
-#             params={'underlying': underlying},
-#             headers={'Authorization': 'Bearer ' + api_key, 'Accept': 'application/json'}
-#         )
-#         json_response = response.json()
-#         if response.status_code == 200:
-#             return json_response
-#     return None    

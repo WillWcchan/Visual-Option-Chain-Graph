@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Option, OptionPrice
 from django.utils.dateparse import parse_date
+from django.core.cache import cache
 from .tradier_api import *
-import base64
 import requests
 import json
 import sys
@@ -12,6 +12,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('optionchain')
 
 # Source: https://testdriven.io/blog/django-caching/x
+CACHE_TTL = 10080 # Cache time to live for a week (60 * 24 * 7)
+CACHE_EXPIRATION_DATE = 60 * 5 # Cache time to live for 5 minutes
+
 def index(request):
     return render(request, 'optionchain/index.html')
 
@@ -21,110 +24,105 @@ def stock_ticker(request):
 
     if request.method == 'GET':
         stock_ticker = request.GET.get('stock_ticker')
+        logger.info("Stock ticker entered: %s" %stock_ticker)
         if not stock_ticker:
-            logger.error("%s was not found" %stock_ticker)
             return render(request, 'optionchain/index.html', {"error_message": "You've entered an empty ticker Try again."})
         else:
             if stock_ticker.isalpha():
-                logger.info("%s was found" %stock_ticker)
                 stock_ticker = stock_ticker.upper().strip()
-                request.session["stock_ticker"] = stock_ticker
+                saved = cache.set("stock_ticker", stock_ticker, timeout=CACHE_TTL)
+                if saved:
+                    logger.info("Successfully saved %s in redis cache" % stock_ticker)        
             else:
                 return render(request, 'optionchain/index.html', {"error_message": "You've entered a value with a number. Please try again with a real ticker"})
 
-        try: 
-            option_exists = get_option_expirations(stock_ticker=stock_ticker)
-            if option_exists and len(option_exists) > 0:
-                logger.info("option's expiration exist for this stock ticker")
+        try:
+            expiration_list = cache.get(stock_ticker + "expiration_list")
+            if not expiration_list:
+                expiration_list = get_option_expirations(stock_ticker=stock_ticker)
+                saved = cache.set(stock_ticker + "expiration_list", expiration_list, timeout=CACHE_TTL)
+                if saved:
+                    logger.info("Successfully saved %s\'s expiration list in redis cache" % stock_ticker)
+
+            logger.info("%s\s expiration_list: %s" %(stock_ticker, expiration_list))
+            if expiration_list and len(expiration_list) > 0:
                 return render(request, 'optionchain/optionType.html', {'stock_ticker': stock_ticker})
             else:
-                logger.error("option's expiration does not exist for this stock ticker")
                 return render(request, 'optionchain/index.html', {"error_message": "Unable to find expirations %s. Try another ticker" %stock_ticker})
         except Exception as e:
             logger.exception(e)
             return render(request, 'optionchain/index.html', {"error_message": e})
-    return render(request, 'optionchain/index.html', {"error_message": "Ensure the request method is a GET."})
 
 
 def option_type(request):
     if request.method == 'GET':
-        type = request.GET.get("option_type", None)
-        if type is None:
-            logger.error("option type was None")
-        else:
-            logger.info("option type %s was found and saved as a session" %type)
-            request.session['type'] = type
-
-        stock_ticker = request.session["stock_ticker"]
+        option_type = request.GET.get("option_type", None)
+        logger.info("option type %s was found and saved as a session" %option_type)
+        request.session['type'] = option_type
+        stock_ticker = cache.get("stock_ticker")
         if stock_ticker:
-            options_expirations_converted = get_option_expirations(
-                stock_ticker=stock_ticker)
+            options_expirations_converted = cache.get(stock_ticker + "expiration_list")
 
             context = {
                 'stock_ticker': stock_ticker,
-                'type': type,
+                'type': option_type,
                 'options_expirations': options_expirations_converted
             }
 
-            if options_expirations_converted and type and len(options_expirations_converted) > 0:
-                logger.info("option_expiration_converted and type are valid")
+            logger.info("%s %s" % (stock_ticker, option_type))
+            if options_expirations_converted and option_type and len(options_expirations_converted) > 0:
                 return render(request, 'optionchain/optionDate.html', context)
             else:
-                logger.info("option_expiration_converted and type are invalid")
                 return render(request, 'optionchain/index.html', {"error_message": "No options expirations found for this ticker. Try another ticker"})
-    else:
-        return render(request, 'optionchain/index.html', {"error_message": "Ensure the request method is a GET."})
 
 
 def option_table(request):
     if request.method == 'GET':
-        stock_ticker = request.session["stock_ticker"]
-        type = request.session['type']
+        stock_ticker = cache.get("stock_ticker")
+        option_type = request.session['type']
 
         try:
             expiration = request.GET.get("expiration_date", "")
             expiration_date = parse_date(expiration)
-            logger.info("Able to parse in the expiration date")
-            request.session['expiration_date'] = expiration
+            logger.info("Able to parse in the expiration date %s" %expiration)
         except ValueError as e:
             logger.exception(e)
             return HttpResponse("Incorrect expiration date format: " + expiration)
 
         if stock_ticker and expiration_date:
-            logger.info("Check if we have an option stored into our database for %s and %s" %(stock_ticker, expiration_date))
-            option_exist_on_db = Option.objects.all().filter(ticker=stock_ticker).filter(expiration=expiration_date).filter(type=type)
-            if option_exist_on_db.count() > 0:
-                logger.info("Option exists in our database.")
-                for option in option_exist_on_db:
-                    optionPrice = OptionPrice.objects.filter(
-                        option=option).first()
-                    if optionPrice:
+            logger.info("Check if we have an option stored in our database for %s and %s" % (stock_ticker, expiration_date))
+            option_list = Option.objects.all().filter(ticker=stock_ticker).filter(expiration=expiration_date).filter(type=option_type)        
+            if option_list.count() > 0:
+                for option in option_list:
+                    option_price = OptionPrice.objects.filter(option=option).first()        
+                    if option_price:
                         list_of_optionChain.append(
-                            {'option': {
-                                'symbol': option.symbol,
-                                'expiration': str(option.expiration),
-                                'id': option.intrinio_id,
-                                'strike': option.strike,
-                                'ticker': option.ticker,
-                                'type': option.type,
-                                'expiration_type': option.expiration_type,
-                            },
-                                'price': {
-                                'close': optionPrice.close,
-                                'close_ask': optionPrice.close_ask,
-                                'close_bid': optionPrice.close_bid,
-                                'date': str(optionPrice.date),
-                                'delta': optionPrice.delta,
-                                'implied_volatility': optionPrice.implied_volatility,
-                                'implied_volatility_change': optionPrice.implied_volatility_change,
-                                'next_day_open_interest': optionPrice.next_day_open_interest,
-                                'open_interest': optionPrice.open_interest,
-                                'open_interest_change': optionPrice.open_interest_change,
-                                'trades': optionPrice.trades,
-                                'volume': optionPrice.volume,
-                                'volume_ask': optionPrice.volume_ask,
-                                'volume_bid': optionPrice.volume_bid
-                            }
+                            {
+                                'option': {
+                                    'symbol': option.symbol,
+                                    'expiration': str(option.expiration),
+                                    'id': option.intrinio_id,
+                                    'strike': option.strike,
+                                    'ticker': option.ticker,
+                                    'type': option.type,
+                                    'expiration_type': option.expiration_type,
+                                },
+                                    'price': {
+                                    'close': option_price.close,
+                                    'close_ask': option_price.close_ask,
+                                    'close_bid': option_price.close_bid,
+                                    'date': str(option_price.date),
+                                    'delta': option_price.delta,
+                                    'implied_volatility': option_price.implied_volatility,
+                                    'implied_volatility_change': option_price.implied_volatility_change,
+                                    'next_day_open_interest': option_price.next_day_open_interest,
+                                    'open_interest': option_price.open_interest,
+                                    'open_interest_change': option_price.open_interest_change,
+                                    'trades': option_price.trades,
+                                    'volume': option_price.volume,
+                                    'volume_ask': option_price.volume_ask,
+                                    'volume_bid': option_price.volume_bid
+                                    }
                             }
                         )
                     else:
@@ -144,7 +142,6 @@ def option_table(request):
                     option_expiration_type = option["expiration_type"]
 
                     logger.info("Creating the option and storing into the database")
-                    # Create the Option object and store into the database
                     option_create = Option(
                         symbol=option_symbol,
                         expiration=parse_date(option_expiration),
@@ -153,17 +150,22 @@ def option_table(request):
                         type=option_type,
                         expiration_type=option_expiration_type,
                     )
-                    # Save or else we get an exception where save() prohibited to prevent data loss due to unsaved related object
                     option_create.save()
                     logger.info("Finished creating the option %s" %(option_create))
 
-                    # Verify that the Option created has a primary key that will be stored as a foreign key for Option Price
                     if option_create.pk:
                         option_price_close = option["close"]
                         option_price_close_ask = option["ask"]
                         option_price_close_bid = option["bid"]
-                        option_price_delta = option["greeks"]["delta"]
-                        option_price_implied_volatility = option["greeks"]["ask_iv"]
+
+                        try:
+                            option_price_delta = option["greeks"]["delta"]
+                            option_price_implied_volatility = option["greeks"]["ask_iv"]
+                        except KeyError as e:
+                            # greek is not available for this stock_ticker, possibly new stock
+                            option_price_delta = 0
+                            option_price_implied_volatility = 0
+
                         option_price_open_interest = option["open_interest"]
                         option_price_volume = option["volume"]
                         logger.info("Creating the optionPrice for the recently created option to store into the database")
@@ -179,15 +181,16 @@ def option_table(request):
                         )
                         logger.info("Finished creating the optionPrice")
 
-        quote = get_real_time_quote(ticker=stock_ticker)["quotes"]["quote"]
-
-        if quote['ask'] and quote['bid']:
-            request.session['current_ask_price'] = quote['ask']
-            request.session['current_bid_price'] = quote['bid']
+        quote = cache.get(stock_ticker + "real_time_quote")
+        if not quote:
+            quote = get_real_time_quote(ticker=stock_ticker)["quotes"]["quote"]
+            saved = cache.set(stock_ticker + "real_time_quote", quote, timeout=CACHE_EXPIRATION_DATE)
+            if saved:
+                logger.info("Saved real time quote %s for 5 minutes" %stock_ticker)
 
         context = {
             "stock_ticker": stock_ticker,
-            "type": type.lower(),
+            "type": option_type.lower(),
             "option_expiration": expiration_date,
             "list_of_optionChain": list_of_optionChain,
             "current_ask_price": quote['ask'],
@@ -200,59 +203,30 @@ def option_table(request):
 def option_visual_graphs(request):
     if request.method == 'GET':
         symbolAndStrike = request.GET.get("symbol", "")
-        symbol = symbolAndStrike.split(" ")[0]
-        strike = symbolAndStrike.split(" ")[1]
+        symbol, strike = symbolAndStrike.split(" ")[0], symbolAndStrike.split(" ")[1]
         
         if symbol and len(symbol) > 0:
-            logger.info("Able to get the %s and %s to show the visual graphs" %(symbol, strike))
-            request.session['symbol'] = symbol  # cache the option_ticker (Ex: 'MSFT200807C00300000')
-
             # Shows the daily Graph
-            logger.info("Making RESTAPI call to Tradier to get the daily timestamps and price")
             daily_timestamps = []
             daily_price = []
-            try: 
+            try:
+                logger.info("Making RESTAPI call to Tradier to get the daily timestamps and price")
                 response = get_time_and_sales(symbol=symbol, interval="daily")
                 if response is None or response['series'] is None:
                     return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this daily %s. Visit an actual brokerage for their option graph." %symbol})
-                daily_timestamps, daily_price = get_timestamp_and_price(json_response=response, interval="daily")   
+                daily_timestamps, daily_price = get_timestamp_and_price(json_response=response, interval="daily")
+                logger.info("Got and parsed the daily timestamps and price successfully")   
             except Exception as e:
                 logger.exception(e)
-            logger.info("Got and parsed the daily timestamps and price successfully")
 
             if len(daily_timestamps) == 0 or len(daily_price) == 0:
                 logger.warning("Daily_timestamps or daily_price were parsed successfully, but one of them are empty for symbol: %s" % (symbol))
-
-            weekly_timestamps = []
-            weekly_price = []
-            # Shows the weekly graph
-            # response = __get_time_and_sales(
-            #     ticker=stock_ticker, interval="weekly")
-            # if response is None:
-            #     return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this weekly ticker: " + stock_ticker})
-            # weekly_timestamps, weekly_price = __get_timestamp_and_price(
-            #     json_response=response, interval="weekly")
-
-            monthly_timestamps = []
-            monthly_price = []
-            # Shows the monthly graph
-            # if expiration_type != 'weeklys':
-            #     response = __get_time_and_sales(
-            #         ticker=stock_ticker, interval="monthly")
-            #     if response is None:
-            #         return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this monthly ticker: " + stock_ticker})
-            #     monthly_timestamps, monthly_price = __get_timestamp_and_price(
-            #         json_response=response, interval="monthly")
 
             context = {
                 'stock_ticker': symbol,
                 'strike': strike,
                 'daily_timestamps': daily_timestamps,
-                'daily_price': daily_price,
-                'weekly_timestamps': weekly_timestamps,
-                'weekly_price': weekly_price,
-                'monthly_timestamps': monthly_timestamps,
-                'monthly_price': monthly_price,
+                'daily_price': daily_price
             }
 
             return render(request, 'optionchain/optionVisualGraphs.html', context)

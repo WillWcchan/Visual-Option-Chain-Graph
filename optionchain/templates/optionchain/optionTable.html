@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load mathfilters %}
 
 <p class="optionInfo lead" name="stock_ticker" value="{{stock_ticker}}">
   {{stock_ticker}}
@@ -17,7 +18,6 @@
 <p class="text-center display-4"> Select a strike: </p><br>
 
 {% csrf_token %}
-{% load mathfilters %}
 {% if list_of_optionChain %}
 {% for option in list_of_optionChain%}
 {% if type == option.option_type %}
