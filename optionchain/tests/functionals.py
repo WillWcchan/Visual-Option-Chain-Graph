@@ -1,5 +1,5 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
 from optionchain.models import Option, OptionPrice
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
@@ -11,12 +11,12 @@ import time
 # python manage.py test optionchain.tests.test_functionals --parallel=4
 class TestOptionChainPage(StaticLiveServerTestCase):
 
-    def setUp(self):
-        self.STOCK_TICKER_EXAMPLE = "MSFT"
-        self.browser = webdriver.Chrome(executable_path="/mysite/optionchain/tests/chromedriver")
+    # def setUp(self):
+        # self.STOCK_TICKER_EXAMPLE = "MSFT"
+        # self.browser = webdriver.Chrome(executable_path="/mysite/optionchain/tests/chromedriver")
 
-    def tearDown(self):
-        self.browser.close()
+    # def tearDown(self):
+        # self.browser.close()
 
     # def test_index_page(self):
     #     self.browser.get("http://127.0.0.1:8000/optionchain")
