@@ -4,6 +4,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.utils.dateparse import parse_date
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
+from django.views.decorators.debug import sensitive_variables
 from .models import Option, OptionPrice
 from .forms import ContactForm
 from .tasks import send_email_task
@@ -44,6 +45,8 @@ def contactView(request):
             return render(request, 'optionchain/index.html', {"info_message": "Email has been sent!"})
     return render(request, 'optionchain/email.html', {'form': form})
 
+# Source: https://docs.djangoproject.com/en/1.11/howto/error-reporting/
+@sensitive_variables('api_key')
 def stock_ticker(request):
     if api_key is None or api_key == "":
        logger.critical("No API KEY provided")

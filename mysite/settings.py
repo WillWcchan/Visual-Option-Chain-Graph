@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -209,4 +210,10 @@ EMAIL_HOST = 'smtp.sendgrid.net' # new
 EMAIL_HOST_USER = 'apikey' # new
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587 # new
-EMAIL_USE_TLS = True # new
+EMAIL_USE_TLS = True  # new
+
+# Email to admin when server encounters errors
+# Source: https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-ADMINS
+ADMINS = [('Will', 'willwcchan@gmail.com')]
+MANAGERS = [('Will', 'willwcchan@gmail.com')]
+SERVER_MAIL = 'visual-option-chain-graph@localhost'
