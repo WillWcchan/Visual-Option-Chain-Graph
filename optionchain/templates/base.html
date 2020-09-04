@@ -9,7 +9,7 @@
     <meta name="generator" content="Jekyll v4.0.1">
     <title>
           {% block title %}
-          Cover Template · Bootstrap
+          Visual-Option-Chain-Graph
           {% endblock %}
     </title>
 
@@ -21,26 +21,33 @@
     <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
   </head>
   
+  <!-- Source: https://docs.djangoproject.com/en/1.11/topics/cache/#local-memory-caching -->
+  {% load cache %}
+  {% cache 10800 header %}
   <body class="text-center">
     <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">Visual Option Chain Graph</h3>
             <nav class="nav nav-masthead justify-content-center">
-              <a class="nav-link active" href="/optionchain">Home</a>
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="/optionchain">Home</a>
+              <a class="nav-link" href="/contact">Contact</a>
             </nav>
         </div>
       </header>
+   {% endcache %}
 
   {% block content %}
   {% endblock %}
 
+  {% load cache %}
+  {% cache 10800 footer %}    
     <footer class="mastfoot mt-auto">
     <div class="inner">
       <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
     </div>
   </footer>
+   {% endcache %}
 
 <!-- JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -56,12 +63,7 @@ var timestamps = {{daily_timestamps| safe}};
 var prices = {{daily_price| safe}};
 
 var daily = document.getElementById('daily').getContext('2d');
-// var weekly = document.getElementById('weekly').getContext('2d');
-// var monthly = document.getElementById('monthly').getContext('2d');
-
 createChart(daily, timestamps, prices, 'Daily');
-// createChart(weekly,{{ weekly_timestamps| safe}},{{ weekly_price| safe}}, 'Weekly');
-// createChart(monthly,{{ monthly_timestamps| safe}},{{ monthly_price| safe}}, 'Monthly'); 
 
 function createChart(ctx, timestamps, price, label) {
     if (timestamps.length > 0 && price.length > 0) {

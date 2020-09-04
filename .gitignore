@@ -76,3 +76,6 @@ ENV/
 
 # No need to send people my logs
 log.log
+
+# dumps
+dump.rdb

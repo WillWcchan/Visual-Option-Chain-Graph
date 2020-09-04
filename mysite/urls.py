@@ -22,6 +22,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     # ex /optionchain/
     url(r'^optionchain/', include('optionchain.urls')),
+    # ex /contact
+    url(r'^contact', v.contactView, name="contact"),
     # ex /optionchain/stockTicker/?stock_ticker=msft
     url(r'^optionchain/stockTicker/$', v.stock_ticker, name = 'stock_ticker'),
     # ex /optionchain/stockTicker/optionType/?option_type=CALL

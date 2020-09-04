@@ -2,12 +2,12 @@ from datetime import datetime as dt, timedelta, date
 from django.utils.dateparse import parse_date
 import requests
 import json
-import optionchain.config
 import logging
+import os
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('optionchain')
-
-api_key = optionchain.config.TRADIER_API_KEY
+api_key = os.environ['TRADIER_API_KEY']
 
 def get_option_expirations(stock_ticker):
     if stock_ticker:

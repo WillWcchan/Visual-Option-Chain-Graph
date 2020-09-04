@@ -11,10 +11,10 @@ services:
 
 env:
   global:
-  - PGPORT=5432
-  - PGUSER=postgres
-  - DJANGO_VERSION=2.2.15
-  - DOCKER_COMPOSE_VERSION=1.25.5
+    - PGPORT=5432
+    - PGUSER=postgres
+    - DJANGO_VERSION=2.2.15
+    - DOCKER_COMPOSE_VERSION=1.25.5
 
 addons:
   postgresql: "10"
@@ -25,21 +25,20 @@ addons:
 
 before_script:
   - sudo apt-get update
-  - pip install -r requirements.txt 
+  - pip install -r requirements.txt
   - python manage.py makemigrations
   - python manage.py migrate
 
 script:
-  - python manage.py test
+  - python manage.py test --parallel
 
 after_success:
   - docker ps
   - docker images
   - docker build -t visual-option-chain-graph .
   - docker-compose down
-  - docker-compose up 
+  - docker-compose up
   - docker images
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker tag visual-option-chain-graph willwcchan/visual-option-chain-graph:latest
   - docker push willwcchan/visual-option-chain-graph:latest
-  

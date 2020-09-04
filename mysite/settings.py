@@ -17,16 +17,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-SECRET_KEY = "@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um"
+SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = 1
 
-ALLOWED_HOSTS = ["localhost","0.0.0.0"]
+ALLOWED_HOSTS = []
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"assets"),
 )
+
+DEFAULT_FROM_EMAIL = 'willwcchan@gmail.com'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'optionchain.apps.OptionchainConfig',
     'mathfilters',
+    'clear_cache',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +90,10 @@ if 'TRAVIS' in os.environ:
             'HOST': 'localhost', # set in docker-compose.yml
             'PORT': 5432,  # default postgres port,
             # https://docs.djangoproject.com/en/3.0/ref/settings/#test
+            'TEST': {
+                'NAME': 'test_database'
+            },
+            'CONN_MAX_AGE':5
         },
     }
 else:
@@ -188,3 +194,19 @@ CACHES = {
         "KEY_PREFIX": "vocg"
     }
 }
+
+# Celery replated variables
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/1"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Source: https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html#django-first-steps
+# Source: https://learndjango.com/tutorials/django-email-contact-form
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new
+DEFAULT_FROM_EMAIL = 'willwcchan@gmail.com'
+EMAIL_HOST = 'smtp.sendgrid.net' # new
+EMAIL_HOST_USER = 'apikey' # new
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = 587 # new
+EMAIL_USE_TLS = True # new

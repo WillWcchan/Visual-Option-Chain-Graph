@@ -1,8 +1,12 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import Option, OptionPrice
+from django.core.mail import send_mail, BadHeaderError
 from django.utils.dateparse import parse_date
 from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from .models import Option, OptionPrice
+from .forms import ContactForm
+from .tasks import send_email_task
 from .tradier_api import *
 import requests
 import json
@@ -15,8 +19,30 @@ logger = logging.getLogger('optionchain')
 CACHE_TTL = 10080 # Cache time to live for a week (60 * 24 * 7)
 CACHE_EXPIRATION_DATE = 60 * 5 # Cache time to live for 5 minutes
 
+# Source: https://docs.djangoproject.com/en/1.11/topics/cache/#local-memory-caching
+# @cache_page(60 * 15)
 def index(request):
     return render(request, 'optionchain/index.html')
+
+# Source: https://learndjango.com/tutorials/django-email-contact-form
+def contactView(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                # send_mail(subject, message, from_email, ['willwcchan@gmail.com'])
+                send_email_task.delay(subject=subject, from_email=from_email, message=message, recipient_list=['willwcchan@gmail.com'])
+                logger.info("Sent email with subject: %s and from email: %s" %(subject, from_email))
+            except BadHeaderError as e:
+                logger.exception(e)
+                return HttpResponse('Invalid header found.')
+            return render(request, 'optionchain/index.html', {"info_message": "Email has been sent!"})
+    return render(request, 'optionchain/email.html', {'form': form})
 
 def stock_ticker(request):
     if api_key is None or api_key == "":
@@ -26,7 +52,7 @@ def stock_ticker(request):
         stock_ticker = request.GET.get('stock_ticker')
         logger.info("Stock ticker entered: %s" %stock_ticker)
         if not stock_ticker:
-            return render(request, 'optionchain/index.html', {"error_message": "You've entered an empty ticker Try again."})
+            return render(request, 'optionchain/index.html', {"info_message": "You've entered an empty ticker Try again."})
         else:
             if stock_ticker.isalpha():
                 stock_ticker = stock_ticker.upper().strip()
@@ -34,7 +60,7 @@ def stock_ticker(request):
                 if saved:
                     logger.info("Successfully saved %s in redis cache" % stock_ticker)        
             else:
-                return render(request, 'optionchain/index.html', {"error_message": "You've entered a value with a number. Please try again with a real ticker"})
+                return render(request, 'optionchain/index.html', {"info_message": "You've entered a value with a number. Please try again with a real ticker"})
 
         try:
             expiration_list = cache.get(stock_ticker + "expiration_list")
@@ -48,10 +74,10 @@ def stock_ticker(request):
             if expiration_list and len(expiration_list) > 0:
                 return render(request, 'optionchain/optionType.html', {'stock_ticker': stock_ticker})
             else:
-                return render(request, 'optionchain/index.html', {"error_message": "Unable to find expirations %s. Try another ticker" %stock_ticker})
+                return render(request, 'optionchain/index.html', {"info_message": "Unable to find expirations %s. Try another ticker" %stock_ticker})
         except Exception as e:
             logger.exception(e)
-            return render(request, 'optionchain/index.html', {"error_message": e})
+            return render(request, 'optionchain/index.html', {"info_message": e})
 
 
 def option_type(request):
@@ -73,7 +99,7 @@ def option_type(request):
             if options_expirations_converted and option_type and len(options_expirations_converted) > 0:
                 return render(request, 'optionchain/optionDate.html', context)
             else:
-                return render(request, 'optionchain/index.html', {"error_message": "No options expirations found for this ticker. Try another ticker"})
+                return render(request, 'optionchain/index.html', {"info_message": "No options expirations found for this ticker. Try another ticker"})
 
 
 def option_table(request):
@@ -213,7 +239,7 @@ def option_visual_graphs(request):
                 logger.info("Making RESTAPI call to Tradier to get the daily timestamps and price")
                 response = get_time_and_sales(symbol=symbol, interval="daily")
                 if response is None or response['series'] is None:
-                    return render(request, 'optionchain/index.html', {"error_message": "No time and sales for this daily %s. Visit an actual brokerage for their option graph." %symbol})
+                    return render(request, 'optionchain/index.html', {"info_message": "No time and sales for this daily %s. Visit an actual brokerage for their option graph." %symbol})
                 daily_timestamps, daily_price = get_timestamp_and_price(json_response=response, interval="daily")
                 logger.info("Got and parsed the daily timestamps and price successfully")   
             except Exception as e:
@@ -231,4 +257,4 @@ def option_visual_graphs(request):
 
             return render(request, 'optionchain/optionVisualGraphs.html', context)
         else:
-            return render(request, 'optionchain/index.html', {"error_message": "Unable to plot the graph. Check if the parameters are correct or even the date."})
+            return render(request, 'optionchain/index.html', {"info_message": "Unable to plot the graph. Check if the parameters are correct or even the date."})
