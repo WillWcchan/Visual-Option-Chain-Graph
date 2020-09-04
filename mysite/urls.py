@@ -21,7 +21,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     # ex /optionchain/
-    url(r'^optionchain/', include('optionchain.urls')),
+    url(r'^optionchain/', include('optionchain.urls'), name='index'),
     # ex /contact
     url(r'^contact', v.contactView, name="contact"),
     # ex /optionchain/stockTicker/?stock_ticker=msft
@@ -36,3 +36,6 @@ urlpatterns = [
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+handler404 = 'optionchain.views.error_404_view'
+handler500 = 'optionchain.views.error_500_view'

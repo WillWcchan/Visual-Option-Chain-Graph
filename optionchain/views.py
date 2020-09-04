@@ -18,10 +18,8 @@ logger = logging.getLogger('optionchain')
 
 # Source: https://testdriven.io/blog/django-caching/x
 CACHE_TTL = 10080 # Cache time to live for a week (60 * 24 * 7)
-CACHE_EXPIRATION_DATE = 60 * 5 # Cache time to live for 5 minutes
+CACHE_EXPIRATION_DATE = 60 * 5  # Cache time to live for 5 minutes
 
-# Source: https://docs.djangoproject.com/en/1.11/topics/cache/#local-memory-caching
-# @cache_page(60 * 15)
 def index(request):
     return render(request, 'optionchain/index.html')
 
@@ -261,3 +259,9 @@ def option_visual_graphs(request):
             return render(request, 'optionchain/optionVisualGraphs.html', context)
         else:
             return render(request, 'optionchain/index.html', {"info_message": "Unable to plot the graph. Check if the parameters are correct or even the date."})
+
+def error_404_view(request, exception):
+    return render(request, '404.html')
+
+def error_500_view(request):
+    return render(request, '500.html')
