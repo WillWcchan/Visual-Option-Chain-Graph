@@ -30,4 +30,63 @@
   </div>
 </form>
 
+<br><br>
+<h4 class="text-center"> Technologies used: </h4>
+<br><br>
+
+{% comment %} Source: https://github.com/simple-icons/simple-icons {% endcomment %}
+
+{% with height=70 width=70 %}
+<div class="container">
+  <div class="row">
+    <div class="col" style="background: #092E20">
+      <a href="https://www.djangoproject.com/">
+      <img height={{height}} width={{width}} color="#092E20" src="https://unpkg.com/simple-icons@v3/icons/django.svg" />
+      </a>
+    </div>
+    <div class="col" style="background: #3776AB">
+      <a href="https://www.python.org/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/python.svg" />
+      </a>
+    </div>
+    <div class="col" style="background: #336791">
+      <a href="https://www.postgresql.org/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/postgresql.svg" />
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="background: #DC382D">
+      <a href="https://redis.io/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/redis.svg" />
+      </a>
+    </div>
+    <div class="col" style="background: #3EAAAF">
+      <a href="https://travis-ci.org/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/travisci.svg" />
+      </a>
+    </div>
+    <div class="col" style="background: #2496ED">
+      <a href="https://www.docker.com/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/docker.svg" />
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="background: #326CE5">
+      <a href="https://kubernetes.io/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/kubernetes.svg" />
+      </a>
+    </div>
+    <div class="col" style="background: #F37626">
+      <a href="https://jupyter.org/">
+      <img height={{height}} width={{width}} src="https://unpkg.com/simple-icons@v3/icons/jupyter.svg" />
+      </a>
+    </div>
+  </div>
+</div>
+{% endwith %}
+
 {% endblock %}

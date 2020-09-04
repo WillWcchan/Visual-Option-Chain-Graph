@@ -40,14 +40,16 @@
   {% block content %}
   {% endblock %}
 
-  {% load cache %}
-  {% cache 10800 footer %}    
+  {% comment %} {% load cache %}
+  {% cache 10800 footer %}     {% endcomment %}
     <footer class="mastfoot mt-auto">
     <div class="inner">
-      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a> |
+       <a href="https://github.com/WillWcchan/Visual-Option-Chain-Graph"><img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg" /></a>
+     </p>
     </div>
   </footer>
-   {% endcache %}
+   {% comment %} {% endcache %} {% endcomment %}
 
 <!-- JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
