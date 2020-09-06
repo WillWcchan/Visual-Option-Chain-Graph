@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% csrf_token %}
+  <p class="optionInfo display-4 lead text-center" name="stock_ticker" value="{{stock_ticker}}"> {{stock_ticker}} |  
+        {% if type == 'call' %}
+          CALL
+        {% else %}
+          PUT
+        {% endif %}
+  </p>
+  <p class="text-center display-4"> Select an expiration date:  </p>
+  <div class="accordion" id="accordionExample">
+  {% if options_expirations %}
+  {% for expiration in options_expirations %}
+  <form action="{% url 'optionTable' %}" method="GET">
+    <div class="card optionCardColor">
+      <div class="card-header">
+        <h2 class="mb-0">
+          <button class="btn btn-link buttonOptionLinkColor" type="submit" name="expiration_date" value="{{expiration|date:'Y-m-d'}}">
+            <div class="text-center" class="option-date"> {{expiration|date:"F d, Y"}}</div>
+          </button>
+        </h2>
+      </div>
+    </div> 
+  </form>
+  {% endfor %}
+  {% endif %}  
+  </div> <!-- End of Accordion for Option Date Table -->
+
+{% endblock %}

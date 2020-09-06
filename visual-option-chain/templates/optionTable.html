@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+{% block content %}
+
+<p class="optionInfo text-center lead" name="stock_ticker" value="{{stock_ticker}}">
+  {{stock_ticker}}
+  {% if type == 'call' %}
+  | CALL
+  {% else %}
+  | PUT
+  {% endif %}
+  | {{option_expiration|date:"M d Y"}}
+  | Bid Price: ${{current_ask_price}}
+  | Ask Price: ${{current_bid_price}}
+</p>
+
+<p class="text-center display-4"> Select a strike: </p><br>
+
+{% csrf_token %}
+{% if list_of_optionChain %}
+{% for option in list_of_optionChain%}
+<form action="{% url 'optionVisualGraphs' %}" method="GET">
+  <button type="submit" class="btn btn-dark btn-block btn-sm" name="symbol" value="{{option.symbol}} {{option.strike}}">
+
+    {% if option.greeks.ask_iv is not None %}
+    <span class="float-left">IV: {{option.greeks.ask_iv|mul:100|floatformat:"0"}}% </span>
+    {% elif option.ask_iv is not None  %}
+    <span class="float-left">IV: {{option.ask_iv|mul:100|floatformat:"0"}}% </span>
+    {% else %}
+    <span class="float-left">IV: N/A </span>
+    {% endif %}
+
+    <span class=""> ${{option.strike}} </span>
+    {%if option.ask is not None %}
+    <span class="float-right"> Ask: {{option.ask}} </span>
+    {% endif %}
+    {%if option.close_ask is not None %}
+    <span class="float-right"> Ask: {{option.close_ask}} </span>
+    {% endif %}
+    {%if option.bid is not None %}
+    <span class="float-right"> Bid: {{option.bid}} |</span>
+    {% endif %}
+    {%if option.close_bid is not None %}
+    <span class="float-right"> Ask: {{option.close_bid}} </span>
+    {% endif %}
+    {% if option.close is None %}
+    <span class="float-right"> Price: Mark | </span>
+    {% else %}
+    <span class="float-right"> Price: ${{option.close|floatformat:"3"}} | </span>
+    {% endif %}
+    <span class="float-right"> OI: {{option.open_interest}} | </span>
+    <span class="float-right"> Volume: {{option.volume}} | </span>
+  </button>
+</form>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
