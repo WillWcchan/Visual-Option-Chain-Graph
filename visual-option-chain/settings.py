@@ -21,19 +21,21 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = True
 
+# 18.223.169.139
 ALLOWED_HOSTS = ["*"]
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,"assets"),
+    os.path.join(BASE_DIR,"static"),
 )
-
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-
-DEFAULT_FROM_EMAIL = 'willwcchan@gmail.com'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_URL = '/static/'
+
+# Deployment - provides a convenience management command to gather static files in a single directory to serve them easily
+STATIC_ROOT = "/var/www/visual-option-chain.com/static/"
+
+DEFAULT_FROM_EMAIL = 'willwcchan@gmail.com'
 
 # Application definition
 INSTALLED_APPS = [
@@ -69,7 +71,7 @@ ROOT_URLCONF = 'visual-option-chain.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'visual-option-chain/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -233,10 +235,10 @@ MANAGERS = [('Will', 'willwcchan@gmail.com')]
 SERVER_MAIL = 'visual-option-chain-graph@localhost'
 
 # Deployment related variables
-# SECURE_HSTS_SECONDS = 0
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_SSL_REDIRECT = False
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
+SECURE_HSTS_SECONDS = 0
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'

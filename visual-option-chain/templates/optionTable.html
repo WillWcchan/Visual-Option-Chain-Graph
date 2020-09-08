@@ -5,7 +5,7 @@
 
 <p class="optionInfo text-center lead" name="stock_ticker" value="{{stock_ticker}}">
   {{stock_ticker}}
-  {% if type == 'call' %}
+  {% if option_type == 'call' %}
   | CALL
   {% else %}
   | PUT
@@ -23,10 +23,10 @@
 <form action="{% url 'optionVisualGraphs' %}" method="GET">
   <button type="submit" class="btn btn-dark btn-block btn-sm" name="symbol" value="{{option.symbol}} {{option.strike}}">
 
-    {% if option.greeks.ask_iv is not None %}
+    {% if option.implied_volatility is not None %}
+    <span class="float-left">IV: {{option.implied_volatility|mul:100|floatformat:"0"}}% </span>
+    {% elif option.greeks.ask_iv is not None  %}
     <span class="float-left">IV: {{option.greeks.ask_iv|mul:100|floatformat:"0"}}% </span>
-    {% elif option.ask_iv is not None  %}
-    <span class="float-left">IV: {{option.ask_iv|mul:100|floatformat:"0"}}% </span>
     {% else %}
     <span class="float-left">IV: N/A </span>
     {% endif %}

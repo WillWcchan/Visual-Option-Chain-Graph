@@ -78,7 +78,7 @@ def get_timestamp_and_price(json_response, interval):
     timestamps = []
     price = []
     if interval and json_response["series"]["data"]:
-        if interval == 'daily' or interval == 'weekly':
+        if interval == 'daily':
             for data in json_response["series"]["data"]:
                 date = dt.strptime(data['time'], "%Y-%m-%dT%H:%M:%S")
                 date = date.strftime("%-m/%-d/%y %H:%-M")

@@ -2,7 +2,84 @@
 
 {% block content %}
 
-  <br>
-  <canvas id="daily" width="fit-content" height="fit-content"></canvas><br>
-  
+<br>
+<canvas id="daily" width="fit-content" height="fit-content"/>
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>>  
+<script type="text/javascript">
+var ticker = "{{ stock_ticker| safe}}";
+var strike = "{{ strike| safe}}";
+// Leave timestamps and prices without quotes if you don't want an ugly graph
+var timestamps = {{ daily_timestamps| safe}};
+var prices = {{ daily_price| safe}};
+
+var daily = document.getElementById('daily').getContext('2d');
+createChart(daily, timestamps, prices, 'Daily');
+
+function createChart(ctx, timestamps, price, label) {
+    if (timestamps.length > 0 && price.length > 0) {
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: label + " | " + ticker + " | " + " Strike: " + strike,
+                    backgroundColor: [
+                        "transparent"
+                    ],
+                    borderColor: [
+                        "white"
+                    ],
+                    borderWidth: 1,
+                    data: prices
+                }]
+            },
+            // Configuration options go here
+            options: {
+                maintainAspectRatio: false,
+                legend: {
+                    onClick: function (e) {
+                        e.stopPropagation();
+                    },
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 18
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        gridlines: {
+                            color: 'transparent',
+                        },
+                        ticks: {
+                            fontColor: 'white',
+
+                        },
+                    }],
+                    yAxes: [{
+                        gridlines: {
+                            color: 'transparent',
+                        },
+                        ticks: {
+                            fontColor: 'white',
+                            autoSkip: false,
+                            suggestedMax: getMax(prices),
+                        }
+                    }],
+                }
+            }
+        });
+    }
+}
+
+function getMax(array) {
+    var max = array[0];
+    for (var i = 0; i < array.length; i++) {
+        if(array[i] > max) {
+        max = array[i];
+    }
+  }
+}
+</script>
 {% endblock %}

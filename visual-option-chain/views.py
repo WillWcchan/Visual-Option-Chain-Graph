@@ -199,6 +199,7 @@ def option_table(request):
         context = {
             "stock_ticker": stock_ticker,
             "option_expiration": expiration_date,
+            "option_type":option_type,
             "list_of_optionChain": list_of_optionChain,
             "current_ask_price": quote['ask'],
             "current_bid_price": quote['bid']
