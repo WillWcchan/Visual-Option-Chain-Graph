@@ -7,26 +7,15 @@ python:
   - "3.6"
 
 services:
-  # - postgresql
   - docker
 
 env:
   global:
-    # - PGPORT=5432
-    # - PGUSER=postgres
     - DJANGO_VERSION=2.2.15
     - DOCKER_COMPOSE_VERSION=1.25.5
 
-# addons:
-#   postgresql: "10"
-#   apt:
-#     packages:
-#       - postgresql-10
-#       - postgresql-client-10
-
 before_script:
   - sudo apt-get update
-  - pip install -r requirements.txt
 
 script:
   - docker build -t visual-option-chain-graph .
