@@ -30,8 +30,6 @@ before_script:
   - pip install -r requirements.txt
   - python manage.py makemigrations
   - python manage.py migrate
-  - sudo service redis-server stop
-  - sudo redis-server /etc/redis/redis.conf --port 6379 --requirepass 'secret'
 
 script:
   - python manage.py test
