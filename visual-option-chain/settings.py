@@ -133,40 +133,40 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240  # higher than the count of fields
 # Set up logging
 # Source: https://docs.djangoproject.com/en/3.0/topics/logging/
 # Prevent duplicate logging: https://stackoverflow.com/questions/6722479/why-does-my-django-1-3-logging-setup-cause-all-messages-to-be-output-twice
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'loggers': {
-        'optionchain': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': False,
-        }
-    },
-    'root': {
-        'handlers': ['file','console'],
-        'level': 'INFO',
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'log.log',
-            'formatter': 'standard',
-        },
-        'console': {
-            'level': 'ERROR',
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard',
-        },
-    },
-    'formatters': {
-        'standard': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': True,
+#     'loggers': {
+#         'optionchain': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#             'propagate': False,
+#         }
+#     },
+#     'root': {
+#         'handlers': ['file','console'],
+#         'level': 'INFO',
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'log.log',
+#             'formatter': 'standard',
+#         },
+#         'console': {
+#             'level': 'ERROR',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'standard',
+#         },
+#     },
+#     'formatters': {
+#         'standard': {
+#             'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#             'datefmt' : "%d/%b/%Y %H:%M:%S"
+#         },
+#     },
+# }
 
 # Redis related properties
 # Source: https://realpython.com/caching-in-django-with-redis/
