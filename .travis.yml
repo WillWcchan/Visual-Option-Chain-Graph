@@ -16,6 +16,7 @@ env:
     - PGUSER=postgres
     - DJANGO_VERSION=2.2.15
     - DOCKER_COMPOSE_VERSION=1.25.5
+    - TRAVIS=True
 
 addons:
   postgresql: "10"
@@ -31,7 +32,7 @@ before_script:
   - python manage.py migrate
 
 script:
-  - python manage.py test --parallel
+  - python manage.py test
 
 after_success:
   - docker ps
