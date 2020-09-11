@@ -94,9 +94,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST':'db', # travis-CI
-        # 'HOST': 'db', # set in docker-compose.yml 
+        'PASSWORD': 'postgres', 
+        'HOST':'db', # travis-CI and set in docker-compose.yml 
         'PORT': 5432,  # default postgres port,
         # https://docs.djangoproject.com/en/3.0/ref/settings/#test
         'TEST': {

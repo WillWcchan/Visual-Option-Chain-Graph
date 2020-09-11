@@ -21,8 +21,6 @@ script:
   - docker build -t visual-option-chain-graph .
   - docker-compose up
   - docker images
-  - python manage.py makemigrations
-  - python manage.py migrate
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker tag visual-option-chain-graph willwcchan/visual-option-chain-graph:latest
   - docker push willwcchan/visual-option-chain-graph:latest
