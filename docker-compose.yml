@@ -14,7 +14,10 @@ services:
             - "5432:5432"
 
     redis:
+        hostname: redis
         image: "redis:alpine"
+        ports:
+            - "6379:6379"
 
     # https://blog.agchapman.com/using-variables-in-docker-compose-files/
     web:
@@ -25,7 +28,7 @@ services:
         build:
             context: .
             dockerfile: visual-option-chain/Dockerfile
-        command: gunicorn -w 4 visual-option-chain.wsgi
+        command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/code
         ports:
@@ -34,21 +37,17 @@ services:
             - db
             - redis
 
-    # celery:
-    #     build: .
-    #     environment:
-    #         - SECRET_KEY=${SECRET_KEY}
-    #         - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
-    #         - TRADIER_API_KEY=${TRADIER_API_KEY}
-    #     command: celery -A visual-option-chain worker -l info -E
-    #     volumes:
-    #         - .:/code
-    #     depends_on:
-    #         - redis
-
-    nginx:
-        image: nginx
+    celery:
         build: .
+        environment:
+            - SECRET_KEY=${SECRET_KEY}
+            - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+            - TRADIER_API_KEY=${TRADIER_API_KEY}
+        command: celery -A visual-option-chain worker -l info -E
+        volumes:
+            - .:/code
+        depends_on:
+            - redis
 
 volumes:
     postgres_data:

@@ -4,7 +4,6 @@ chardet==3.0.4
 Django==2.2.15
 django-mathfilters==1.0.0
 django-redis==4.12.1
-django-redis-cache==2.1.1
 django-clear-cache==0.3
 # django-livereload-server>=0.3.2
 celery==4.4.7
@@ -15,8 +14,5 @@ redis==3.5.3
 redis-server==5.0.7
 requests==2.24.0
 rope==0.17.0
-selenium==3.141.0
 sqlparse==0.3.1
 urllib3==1.25.10
-gunicorn==20.0.4
-django-debug-toolbar==2.2

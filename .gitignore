@@ -83,3 +83,8 @@ log.log
 # Redis dump
 dump.rdb
 *rdb
+
+# settings
+/settings
+dev.py
+prod.py

@@ -7,7 +7,7 @@ from celery import Celery
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'visual-option-chain.settings')
 
-app = Celery('visual-option-chain', backend='redis//localhost')
+app = Celery('visual-option-chain', backend='redis//redis:6379/0', broker='redis://redis:6379/0')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

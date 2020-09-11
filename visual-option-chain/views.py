@@ -145,9 +145,7 @@ def option_table(request):
                             'volume': option_price.volume,
                             'volume_ask': option_price.volume_ask,
                             'volume_bid': option_price.volume_bid
-                            })
-                    else:
-                        return HttpResponse("No option price for this option")
+                        })
             else:
                 logger.info("Option does not exist in our database. Will make a REST API call to Tradier with %s and %s" %(stock_ticker, expiration_date))
                 response = get_option_chain(ticker=stock_ticker, expiration=expiration)
