@@ -8,6 +8,7 @@ python:
 services:
   - postgresql
   - docker
+  - redis-server
 
 env:
   global:
