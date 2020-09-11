@@ -38,7 +38,7 @@ after_success:
   - docker images
   - docker build -t visual-option-chain-graph .
   - docker-compose down
-  - docker-compose up
+  - docker-compose up -d
   - docker images
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker tag visual-option-chain-graph willwcchan/visual-option-chain-graph:latest
