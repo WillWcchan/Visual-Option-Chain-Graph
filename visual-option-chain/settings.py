@@ -89,21 +89,38 @@ WSGI_APPLICATION = 'visual-option-chain.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # https://wsvincent.com/django-docker-postgresql/
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db', # set in docker-compose.yml
-        'PORT': 5432,  # default postgres port,
-        # https://docs.djangoproject.com/en/3.0/ref/settings/#test
-        'TEST': {
-            'NAME': 'test_database'
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': 5432,  # default postgres port,
+            # https://docs.djangoproject.com/en/3.0/ref/settings/#test
+            'TEST': {
+                'NAME': 'test_database'
+            },
+            'CONN_MAX_AGE':5
         },
-        'CONN_MAX_AGE':5
-    },
-}
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'db', # set in docker-compose.yml
+            'PORT': 5432,  # default postgres port,
+            # https://docs.djangoproject.com/en/3.0/ref/settings/#test
+            'TEST': {
+                'NAME': 'test_database'
+            },
+            'CONN_MAX_AGE':5
+        },
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
