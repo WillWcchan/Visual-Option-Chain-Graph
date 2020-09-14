@@ -1,5 +1,6 @@
 # pull base image
 FROM python:3.7.9-buster
+MAINTAINER William Chan <willwcchan@gmail.com>
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -19,3 +20,5 @@ RUN pip install --upgrade pip \
 
 # copy project
 COPY . /code/
+
+CMD python manage.py runserver 0.0.0.0:8000
