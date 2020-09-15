@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: willwcchan/visual-option-chain-graph:v2
+          image: willwcchan/visual-option-chain-graph
           command: ["python", "manage.py", "migrate"]
           env:
             - name: POSTGRES_USER
