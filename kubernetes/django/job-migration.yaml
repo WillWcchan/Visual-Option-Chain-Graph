@@ -1,26 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: django-deployment
+  name: django-migrations
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: django
   template:
-    metadata:
-      labels:
-        app: django
     spec:
       containers:
         - name: django
-          image: willwcchan/visual-option-chain-graph
-          resources:
-            limits:
-              cpu: 1
-              memory: 512Mi
-            requests:
-              memory: 256Mi
+          image: willwcchan/visual-option-chain-graph:v2
+          command: ["python", "manage.py", "migrate"]
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -36,9 +24,6 @@ spec:
 
             - name: POSTGRES_HOST
               value: postgres-service
-
-            - name: REDIS_HOST
-              value: redis-service
 
             - name: SECRET_KEY
               valueFrom:
@@ -58,12 +43,5 @@ spec:
                   name: app-secret
                   key: EMAIL_HOST_PASSWORD
 
-          ports:
-            - containerPort: 8000
-
-          volumeMounts:
-            - name: postgres-volume-mount
-              mountPath: /var/lib/busybox
-
-      volumes:
-        - name: postgres-volume-mount
+      restartPolicy: Never
+  backoffLimit: 2

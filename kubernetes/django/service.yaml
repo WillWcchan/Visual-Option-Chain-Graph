@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubernetes-django-service
+  name: django-service
 spec:
   selector:
-    app: kubernetes-django
+    app: django
   ports:
     - protocol: TCP
-      port: 8000
+      port: 80
       targetPort: 8000
-  type: NodePort
+  type: LoadBalancer

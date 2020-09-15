@@ -18,6 +18,12 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
 
+app.conf.beat_schedule = {
+    'display_time-20-seconds': {
+        'task': 'visual-option-chain.tasks.display_time',
+        'schedule': 20.0
+    },
+}
 
 @app.task(bind=True)
 def debug_task(self):

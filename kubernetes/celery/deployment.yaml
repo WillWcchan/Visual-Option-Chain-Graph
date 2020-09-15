@@ -1,26 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-deployment
+  name: celery-worker
+  labels:
+    deployment: celery-worker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: django
+      pod: celery-worker
   template:
     metadata:
       labels:
-        app: django
+        pod: celery-worker
     spec:
       containers:
-        - name: django
+        - name: celery-worker
           image: willwcchan/visual-option-chain-graph
-          resources:
-            limits:
-              cpu: 1
-              memory: 512Mi
-            requests:
-              memory: 256Mi
+          command:
+            [
+              "celery",
+              "-A",
+              "visual-option-chain",
+              "worker",
+              "-l",
+              "info",
+              "-E",
+            ]
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -57,13 +63,3 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: EMAIL_HOST_PASSWORD
-
-          ports:
-            - containerPort: 8000
-
-          volumeMounts:
-            - name: postgres-volume-mount
-              mountPath: /var/lib/busybox
-
-      volumes:
-        - name: postgres-volume-mount
