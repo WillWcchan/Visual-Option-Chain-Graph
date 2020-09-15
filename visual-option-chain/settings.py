@@ -92,12 +92,11 @@ WSGI_APPLICATION = 'visual-option-chain.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres', 
-        'HOST':'db', # travis-CI and set in docker-compose.yml 
-        'PORT': 5432,  # default postgres port,
-        # https://docs.djangoproject.com/en/3.0/ref/settings/#test
+        'NAME': 'kubernetes_django',
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        'PORT': os.getenv('POSTGRES_PORT', 5432),
         'TEST': {
             'NAME': 'test_database'
         },

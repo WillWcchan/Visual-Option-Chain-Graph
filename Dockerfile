@@ -1,6 +1,6 @@
 # pull base image
 FROM python:3.7.9-buster
-MAINTAINER William Chan <willwcchan@gmail.com>
+LABEL William Chan <willwcchan@gmail.com>
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
