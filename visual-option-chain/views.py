@@ -245,6 +245,3 @@ def error_404_view(request, exception):
 
 def error_500_view(request):
     return render(request, '500.html')
-
-def tearDown(self):
-    get_redis_connection("default").flushall()
