@@ -188,8 +188,8 @@ CACHES = {
 
 # REDIS
 REDIS_URL = "redis://{host}:{port}/1".format(
-    host=os.getenv('REDIS_HOST', 'localhost'),
-    port=os.getenv('REDIS_PORT', '6379')
+    host=os.getenv('REDIS_HOST', 'redis'),
+    port=os.getenv('REDIS_PORT', 6379)
 )
 
 # celery
