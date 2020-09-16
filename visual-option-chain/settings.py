@@ -187,10 +187,7 @@ CACHES = {
 }
 
 # REDIS
-REDIS_URL = "redis://{host}:{port}/1".format(
-    host=os.getenv('REDIS_HOST', 'redis'),
-    port=os.getenv('REDIS_PORT', 6379)
-)
+REDIS_URL = "redis://redis:6379/1"
 
 # celery
 CELERY_BROKER_URL = REDIS_URL
