@@ -27,12 +27,16 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"static"),
 )
 
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_URL = '/static/'
 
 # Deployment - provides a convenience management command to gather static files in a single directory to serve them easily
-STATIC_ROOT = "/var/www/visual-option-chain.com/static/"
+# STATIC_ROOT = "/var/www/visual-option-chain.com/static/"
+STATIC_ROOT = "/static/"
 
 DEFAULT_FROM_EMAIL = 'willwcchan@gmail.com'
 
