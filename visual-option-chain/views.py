@@ -5,6 +5,7 @@ from django.utils.dateparse import parse_date
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
 from django.views.decorators.debug import sensitive_variables
+from django.views.decorators.csrf import csrf_exempt
 from django_redis import get_redis_connection
 from .models import Option, OptionPrice
 from .forms import ContactForm
@@ -25,6 +26,7 @@ def index(request):
     return render(request, 'index.html')
 
 # Source: https://learndjango.com/tutorials/django-email-contact-form
+@csrf_exempt
 def contactView(request):
     if request.method == 'GET':
         form = ContactForm()
