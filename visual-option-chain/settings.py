@@ -166,12 +166,15 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240  # higher than the count of fields
 #     },
 # }
 
+# REDIS
+REDIS_URL = "redis://redis:6379/1"
+
 # Redis related properties
 # Source: https://realpython.com/caching-in-django-with-redis/
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'REDIS_URL',
+        'LOCATION': REDIS_URL,
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'SOCKET_TIMEOUT': 5,
@@ -185,9 +188,6 @@ CACHES = {
         }
     }
 }
-
-# REDIS
-REDIS_URL = "redis://redis:6379/1"
 
 # celery
 CELERY_BROKER_URL = REDIS_URL
