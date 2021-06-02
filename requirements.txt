@@ -15,6 +15,6 @@ redis-server==5.0.7
 requests==2.24.0
 rope==0.17.0
 sqlparse==0.3.1
-urllib3==1.25.10
+urllib3==1.26.5
 tornado==5.1.1
 kombu<4.7,>=4.6.10
