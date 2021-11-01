@@ -22,12 +22,12 @@ services:
     # https://blog.agchapman.com/using-variables-in-docker-compose-files/
     web:
         environment:
-            - SECRET_KEY=${SECRET_KEY}
-            - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
-            - TRADIER_API_KEY=${TRADIER_API_KEY}
+            - SECRET_KEY=@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um
+            - EMAIL_HOST_PASSWORD=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
+            - TRADIER_API_KEY=SNcsTbvffbnL7Kre7K9FDRzNALjv
         build:
             context: .
-        command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py test"
+        command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/code
         ports:
@@ -39,9 +39,9 @@ services:
     celery:
         build: .
         environment:
-            - SECRET_KEY=${SECRET_KEY}
-            - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
-            - TRADIER_API_KEY=${TRADIER_API_KEY}
+            - SECRET_KEY=@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um
+            - EMAIL_HOST_PASSWORD=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
+            - TRADIER_API_KEY=SNcsTbvffbnL7Kre7K9FDRzNALjv
         command: celery -A visual-option-chain worker -l info -E
         volumes:
             - .:/code

@@ -17,7 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = "@798h5aq_2j55bt$fg^7zk%u&7q4200vpb234qm(=dxvjo3+um"
 
 DEBUG = False
 
@@ -71,6 +72,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'visual-option-chain.urls'
 
+# https://lynxbee.com/solved-django-template-exceptions-templatesyntaxerror-staticfiles-is-not-a-registered-tag-library/
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -83,6 +85,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                            'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
@@ -96,11 +101,15 @@ WSGI_APPLICATION = 'visual-option-chain.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kubernetes_django',
-        'USER': os.getenv('POSTGRES_USER', 'kubernetes_django'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'kubernetes_django'),
-        'HOST': os.getenv('POSTGRES_HOST', 'db'),
-        'PORT': os.getenv('POSTGRES_PORT', 5432),
+        'NAME': 'postgres',
+        # 'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+        # 'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        # 'PORT': os.getenv('POSTGRES_PORT', 5432),
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
         'TEST': {
             'NAME': 'test_database'
         },
@@ -208,7 +217,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new
 DEFAULT_FROM_EMAIL = 'willwcchan@gmail.com'
 EMAIL_HOST = 'smtp.sendgrid.net' # new
 EMAIL_HOST_USER = 'apikey' # new
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+# EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_PASSWORD = "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"
 EMAIL_PORT = 587 # new
 EMAIL_USE_TLS = True  # new
 
