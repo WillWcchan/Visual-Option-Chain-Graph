@@ -57,6 +57,9 @@ MIT
 
 **Free Software, Hell Yeah!**
 
+Keep in mind that this application will not run without an activate API key from Tradier-API (https://tradier.com/products/brokerage-api)
+I would recommend you create an account with them, get the api secret key and insert it in this project and you'll be able to run this application. I guarantee it!
+
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    [Python]: <https://www.python.org/>
