@@ -49,7 +49,8 @@ Enjoy the screenshots:
 ![alt text](screenshots/c.png "Description goes here")
 ![alt text](screenshots/d.png "Description goes here")
 ![alt text](screenshots/e.png "Description goes here")
-    
+![alt text](screenshots/f.png "Description goes here")
+
 ## License
 
 MIT
