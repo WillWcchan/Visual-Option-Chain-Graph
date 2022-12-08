@@ -1,5 +1,5 @@
 asgiref==3.2.10
-certifi==2020.6.20
+certifi==2022.12.7
 chardet==3.0.4
 django>=2.2.24
 django-mathfilters==1.0.0
